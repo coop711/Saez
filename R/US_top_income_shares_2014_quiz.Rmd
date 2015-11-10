@@ -13,7 +13,7 @@ output: html_document
 options(digits=2)
 library(xlsx)
 # load("US_top_income_share_2014.rda")
-US.top.income.shares.14 <- read.xlsx("./data/TabFig2014prel.xlsx", sheetIndex = 9, sheetName = "Table A3", startRow = 6, endRow = 107, colIndex = c(1:7, 9:13), header = FALSE)
+US.top.income.shares.14 <- read.xlsx("../data/TabFig2014prel.xlsx", sheetIndex = 9, sheetName = "Table A3", startRow = 6, endRow = 107, colIndex = c(1:7, 9:13), header = FALSE)
 # v.names <- read.xlsx("./data/TabFig2014prel.xlsx", sheetName = "Table A3", startRow = 4, endRow = 4, colIndex = c(2:7, 9:14), colClasses = character, header = FALSE)
 #str(US.top.income.shares.14)
 v.names <- c("Year", "P90_100", "P95_100", "P99_100", "P99.5_100", "P99.9_100", "P99.99_100", "P90_95", "P95_99", "P99_99.5", "P99.5_99.9", "P99.9_99.99")
@@ -110,7 +110,7 @@ text(x=2012, y=17.5, label="(다)", cex=2.0, col="red")
 
 *
 
-```{r, fig.width=10, fig.height=5}
+```{r, reshape, fig.width=10, fig.height=5}
 library(reshape2)
 data.1_10 <- US.top.income.shares.14[c("Year", "P99_100", "P90_95", "P95_99")]
 data.1_10.melt <- melt(data.1_10, id.vars = "Year", measure.vars = c("P99_100", "P90_95", "P95_99"), variable.name = "Percentiles", value.name = "Share")
