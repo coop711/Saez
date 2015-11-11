@@ -34,11 +34,13 @@ US.top.income.shares.14[, 1:8]
 plot(P99_100~Year, data=US.top.income.shares.14)
 ```
 
+
 최소한의 정보를 주기 위하여 각 자료의 최대값, 최소값을 고려하여 y-축의 범위를 `ylim=c(5,25)`로 설정하고, x-축의 눈금은 비워둔다. 점들을 선으로 이어주고, 점은 다시 삼각형 모양으로 바꾼다.
 
 ```{r fig.width=12, fig.height=8}
 plot(P99_100 ~ Year, data = US.top.income.shares.14, xlab="연도", ylab = "소득점유(%)", ylim = c(5, 25), xaxt = "n", type = "b", pch = 17)
 ```
+
 
 이제 x-축에는 연도를 10년 단위로 표시하고, `lines()`를 이용하여 차상위4%와 차차상위5%의 소득 점유율 변화를 함께 그린다.
 
@@ -129,6 +131,9 @@ theme_bw() 적용
 ```{r, theme_bw(), warning = FALSE, fig.width=12, fig.height=7}
 library(ggplot2)
 (g1 <- g0 + theme_bw())
+#(g1 <- g0 + theme_classic())
+#(g1 <- g0 + theme_minimal())
+#(g1 <- g0 + theme_grey())
 ```
 
 격자 설정
@@ -172,10 +177,10 @@ ls()
 (g6 <- g5 + labs(colour = "소득 분위", fill = "소득 분위") )
 ```
 
-범례와 색깔 수정
+범례와 색깔 수정, 범례 제목 없애기
 
 ```{r, legends modify, warning = FALSE, fig.width=12, fig.height=7}
-(g7 <- g6 + scale_colour_manual(values = c("black", "blue", "red"), labels = c("99-100%:$423,090 이상(2014년기준)","95-99%:$174,240-$423,090","90-95%:$121,360-$174,240")) + scale_fill_manual(values = c("black", "blue", "red"), labels = c("99-100%:$423,090 이상(2014년기준)","95-99%:$174,240-$423,090","90-95%:$121,360-$174,240")))
+(g7 <- g6 + scale_colour_manual(name = "", values = c("black", "blue", "red"), labels = c("99-100%:$423,090 이상(2014년기준)","95-99%:$174,240-$423,090","90-95%:$121,360-$174,240")) + scale_fill_manual(name = "", values = c("black", "blue", "red"), labels = c("99-100%:$423,090 이상(2014년기준)","95-99%:$174,240-$423,090","90-95%:$121,360-$174,240")))
 ```
 
 범례를 안쪽으로
@@ -184,10 +189,11 @@ ls()
 (g8 <- g7 + theme(legend.position =  c(0.5, 0.88)))
 ```
 
-범례 제목 없애기
+colour 범례 없애기(colour 설정으로 나타나는 범례의 선 없애는 효과)
 
-```{r, no legends title, warning = FALSE, fig.width=12, fig.height=7}
-(g9 <- g8 + guides(colour = guide_legend(title=NULL), fill = guide_legend(title=NULL)))
+```{r, no legends title and colour, warning = FALSE, fig.width=12, fig.height=7}
+#(g9 <- g8 + guides(colour = guide_legend(title=NULL), fill = guide_legend(title=NULL)))
+(g9 <- g8 + guides(colour ="none"))
 ```
 
 범례에 박스 두르기
