@@ -114,8 +114,8 @@ text(x=2012, y=17.5, label="대침체", cex=2.0, col="red")
 
 ```{r, reshape}
 library(reshape2)
-data.1_10 <- US.top.income.shares.14[c("Year", "P99_100", "P90_95", "P95_99")]
-data.1_10.melt <- melt(data.1_10, id.vars = "Year", measure.vars = c("P99_100", "P90_95", "P95_99"), variable.name = "Percentiles", value.name = "Share")
+data.1_10 <- US.top.income.shares.14[c("Year", "P99_100", "P95_99", "P90_95")]
+data.1_10.melt <- melt(data.1_10, id.vars = "Year", measure.vars = c("P99_100", "P95_99", "P90_95"), variable.name = "Percentiles", value.name = "Share")
 str(data.1_10.melt)
 ```
 
@@ -180,7 +180,7 @@ ls()
 범례와 색깔 수정, 범례 제목 없애기
 
 ```{r, legends modify, warning = FALSE, fig.width=12, fig.height=7}
-(g7 <- g6 + scale_colour_manual(name = "", values = c("black", "blue", "red"), labels = c("99-100%:$423,090 이상(2014년기준)","95-99%:$174,240-$423,090","90-95%:$121,360-$174,240")) + scale_fill_manual(name = "", values = c("black", "blue", "red"), labels = c("99-100%:$423,090 이상(2014년기준)","95-99%:$174,240-$423,090","90-95%:$121,360-$174,240")))
+(g7 <- g6 + scale_colour_manual(name = "", values = c("black", "red", "blue"), labels = c("99-100%:$423,090 이상(2014년기준)","95-99%:$174,240-$423,090","90-95%:$121,360-$174,240")) + scale_fill_manual(name = "", values = c("black", "red", "blue"), labels = c("99-100%:$423,090 이상(2014년기준)","95-99%:$174,240-$423,090","90-95%:$121,360-$174,240")))
 ```
 
 범례를 안쪽으로
