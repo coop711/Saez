@@ -1,7 +1,7 @@
 ---
 title: "US Top Income Share 2014"
 author: "coop711"
-date: "`Sys.Date()`"
+date: "`r Sys.Date()`"
 output: html_document
 ---
 
@@ -211,7 +211,7 @@ colour 범례 없애기(colour 설정으로 나타나는 범례의 선 없애는
 역사상 고점 시기
 
 ```{r, historical peaks, warning = FALSE, fig.width=12, fig.height=7}
-(g12 <- g11 + annotate("text", x=c(1928, 2007), y=c(11.5, 12.5), label = c(1928, 2007)))
+(g12 <- g11 + annotate("text", x=c(1928, 2007), y=c(12, 12.8), label = c(1928, 2007)))
 ```
 
 
