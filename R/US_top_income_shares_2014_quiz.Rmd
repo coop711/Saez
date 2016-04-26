@@ -115,7 +115,7 @@ library(reshape2)
 data.1_10 <- US.top.income.shares.14[c("Year", "P99_100", "P90_95", "P95_99")]
 data.1_10.melt <- melt(data.1_10, id.vars = "Year", measure.vars = c("P99_100", "P90_95", "P95_99"), variable.name = "Percentiles", value.name = "Share")
 library(ggplot2)
-ggplot(data.1_10.melt, aes(x = Year, y = Share, colour = Percentiles)) + geom_line() + geom_point(shape=24, aes(fill = Percentiles)) + ylim(0, 30) + scale_colour_manual(values = c("black", "blue", "red")) + scale_fill_manual(values = c("black", "blue", "red"))
+ggplot(data.1_10.melt, aes(x = Year, y = Share, colour = Percentiles)) + geom_line(na.rm = TRUE) + geom_point(shape=24, aes(fill = Percentiles), na.rm = TRUE) + ylim(0, 30) + scale_colour_manual(values = c("black", "blue", "red")) + scale_fill_manual(values = c("black", "blue", "red"))
 ```
 
 뒷 정리
