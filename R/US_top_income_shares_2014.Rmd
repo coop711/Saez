@@ -7,7 +7,7 @@ output: html_document
 
 ## Data Preparation
 
-준비한 자료는  E. Saez 교수의 홈페이지에 있는 `TabFig2014prel.xls` 인데 이를 약간의 작업을 거쳐 R에서 불러들이기 편하게 고쳐놓았다. 
+준비한 자료는  [E. Saez 교수의 홈페이지](http://elsa.berkeley.edu/~saez/)에 있는 `TabFig2014prel.xls` 를 손봐서 불러들인 것이다. 
 
 ```{r, data preparation, message = FALSE, echo = FALSE, results = 'hide'}
 options(digits = 2)
@@ -21,12 +21,11 @@ names(US.top.income.shares.14) <- v.names
 ls()
 ```
 
-작업을 마친 자료파일은 `US.top.income.shares.14`이며, 이 자료의 구조와 앞의 몇 열의 값은 다음과 같다.
+<!--작업을 마친 자료파일은 `US.top.income.shares.14`이며, 이 자료의 구조와 앞의 몇 열의 값은 다음과 같다.-->
 
 ```{r, data structure, echo = FALSE}
 library(knitr)
-# str(US.top.income.shares.14)
-# kable(US.top.income.shares.14[, 1:8])
+str(US.top.income.shares.14)
 kable(US.top.income.shares.14)
 ```
 
@@ -241,9 +240,9 @@ colour 범례 없애기(colour 설정으로 나타나는 범례의 선 없애는
 ```
 
 
-## 뒷 정리
+<!--## 뒷 정리
 
 ```{r, save.image}
 save.image(file="US_top_income_shares_2014_add.rda")
 ```
-
+-->
