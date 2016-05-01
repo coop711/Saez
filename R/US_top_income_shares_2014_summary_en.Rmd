@@ -176,7 +176,7 @@ g5 <- g4 +
    theme(plot.title = element_text(size = 20))
 # g5
 g6 <- g5 + 
-   labs(colour = "Income Quantile", fill = "Income Quantile")
+   labs(colour = "Income Fractile", fill = "Income Fractile")
 # g6
 g7 <- g6 + 
    scale_colour_manual(name = "", values = c("black", "red", "blue"), labels = legend.text.1) +
@@ -235,7 +235,7 @@ h5 <- h4 +
    theme(plot.title = element_text(size = 20))
 # h5
 h6 <- h5 + 
-   labs(colour = "Income Quantile", fill = "Income Quantile")
+   labs(colour = "Income Fractile", fill = "Income Fractile")
 # h6
 h7 <- h6 + 
    scale_colour_manual(name = "", values = c("black", "red", "blue"), labels = legend.text.2) +
@@ -293,7 +293,7 @@ j5 <- j4 +
    theme(plot.title = element_text(size = 20))
 # j5
 j6 <- j5 + 
-   labs(colour = "Income Quantile", fill = "Income Quantile") 
+   labs(colour = "Income Fractile", fill = "Income Fractile") 
 # j6
 j7 <- j6 + 
    scale_colour_manual(name = "", values = c("black", "blue"), labels = legend.text.3) +
