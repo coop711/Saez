@@ -57,7 +57,7 @@ legend(x = 1945, y = 25, legend = legend.text.1, pch = 17, col = c("black", "red
 main.title.1 <- "Decomposing the Top 10% US Income Share (1913 ~ 2014)"
 title(main = main.title.1)
 text(x = c(1928, 2007), y = c(24, 23.5), labels = c("1928", "2007"), pos = 3)
-times.label <- c("The Great\nDepression", "The Great\nProsperity", "The Great\nRepression")
+times.label <- c("The Great\nDepression", "The Great\nProsperity", "The Great\nRecession")
 text(x = c(1935, 1960, 2013.5), y = c(22, 8, 18), label = times.label, cex = 1.0, col = "red")
 # dev.copy(png, file = "../pics/US_top_income_share_1-4-5_2014.png", width = 960, height = 600)
 # dev.off()
