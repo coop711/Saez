@@ -71,7 +71,7 @@ text(x = c(1935, 1960, 2013.5), y = c(22, 8, 18), label = times.label, cex = 1.0
 
 ### Top 1% 
 
-소득 상위 1%(`P999_100`)를 상위 0.1%(`P99.9_100`), 차상위 0.4%(`P99.5_99.9`), 차차상위 0.5%(`P99_99.5`)로 분할
+소득 상위 1%(`P99_100`)를 상위 0.1%(`P99.9_100`), 차상위 0.4%(`P99.5_99.9`), 차차상위 0.5%(`P99_99.5`)로 분할
 
 ```{r, partiotion top 1, echo = FALSE, message = FALSE, warning = FALSE, fig.width = 12, fig.height = 6.75}
 # png(file = "../pics/US_top_income_share_0.1-0.4-0.5_2014_72dpi.png", width = 864, height = 486)
