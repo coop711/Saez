@@ -11,7 +11,7 @@ output: html_document
 
 ```{r, data preparation, message = FALSE, echo = FALSE, results = 'hide'}
 options(digits = 2)
-library(xlsx)
+# library(xlsx)
 library(knitr)
 load("US_top_income_shares_vs_tax_rates.rda")
 # US.top.income.shares.14 <- read.xlsx("../data/TabFig2014prel.xlsx", sheetIndex = 9, sheetName = "Table A3", startRow = 6, endRow = 107, colIndex = c(1:7, 9:13), header = FALSE)
