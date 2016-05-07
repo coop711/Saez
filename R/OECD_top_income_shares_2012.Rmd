@@ -1,0 +1,76 @@
+---
+title: "OECD Top Income Shares"
+author: "coop711"
+date: "2016년 5월 7일"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Data
+
+```{r, data, echo = FALSE}
+library(knitr)
+Country <- c("네덜란드", "덴마크", "스웨덴", "핀란드", "노르웨이", "프랑스", "뉴질랜드", "스페인", "호주", "이탈리아", "일본", "포르투갈", "아일랜드", "스위스", "독일", "캐나다", "한국", "영국", "미국")
+Top_1_shares <- c(6.33, 6.41, 7.13, 7.46, 7.80, 8.08, 8.13, 8.20, 9.17, 9.38, 9.51, 9.77, 10.50, 10.54, 10.88, 12.22, 12.23, 12.93, 19.34)
+Top_10_shares <- c(30.90, 26.88, 27.90, 32.50, 28.33, 32.69, 30.88, 31.64, 30.98, 33.87, 40.50, 38.25, 36.13, 33.15, 34.71, 40.12, 44.87, 39.15, 48.16)
+OECD_shares_2012 <- data.frame(Country, Top_1_shares, Top_10_shares)
+o.top_1 <- order(Top_1_shares)
+o.top_10 <- order(Top_10_shares)
+Country.o.top_10 <- Country[o.top_10]
+kable(cbind(OECD_shares_2012[, -3], "||" = paste("||"), OECD_shares_2012[o.top_10, -2]), align = c("c", "r", "c", "c", "r"))
+```
+
+## Bar Plots
+
+```{r, barplots, echo = FALSE, fig.width = 12, fig.height = 9}
+# png(file = "../pics/OECD_Top_Income_Shares_72dpi.png", width = 864, height = 648)
+# png(file = "../pics/OECD_Top_Income_Shares_300dpi.png", width = 1280, height = 960)
+par(mfrow = c(1, 2), mai = c(1.0, 1.8, 0.8, 0.4) + 0.2)
+x1 <- barplot(rev(Top_1_shares), horiz = TRUE, col = "cyan", axes = FALSE, names.arg = rev(Country), xlim = c(0, 25), space = 0.5, las = 1)
+# title(main = "Top 1% Income Share")
+title(main = "상위 1% 소득점유율(%)")
+text(rev(Top_1_shares) + 2.0 , x1, labels = rev(Top_1_shares), cex = 1)
+x10 <- barplot(rev(Top_10_shares[o.top_10]), horiz = TRUE, col = "greenyellow", axes = FALSE, names.arg = rev(Country.o.top_10), xlim = c(0, 60), space = 0.5, las = 1)
+# title(main = "Top 10% Income Share")
+title(main = "상위 10% 소득점유율(%)")
+text(rev(Top_10_shares[o.top_10]) + 6.0, x10, labels = rev(Top_10_shares[o.top_10]), cex = 1)
+# dev.copy(png, file = "../pics/OECD_Top_Income_Shares_2012.png", width = 960, height = 720)
+# dev.off()
+```
+
+## ggplot
+
+### Data
+
+```{r, factor setting, echo = FALSE}
+OECD_shares_2012$Country.order.1 <- factor(OECD_shares_2012$Country, levels = Country[rev(o.top_1)])
+OECD_shares_2012$Country.order.10 <- factor(OECD_shares_2012$Country, levels = Country[rev(o.top_10)])
+kable(cbind(OECD_shares_2012[1:3], levels(OECD_shares_2012$Country.order.1), levels(OECD_shares_2012$Country.order.10)))
+```
+
+### geom_bar
+
+```{r, geom_bar, echo = FALSE, fig.width = 16, fig.height = 8}
+library(ggplot2)
+library(gridExtra)
+source("theme_kr.R")
+g1 <- ggplot() +
+  geom_bar(data = OECD_shares_2012[c("Top_1_shares", "Country.order.1")], aes(x = Country.order.1, y = Top_1_shares), stat = "identity", fill = "cyan") +
+  theme_bw() + 
+  theme.kr + 
+ coord_flip() +
+  xlab("") + ylab("") + ggtitle("상위 1% 소득점유율(%)") +
+  annotate("text", x = 1:19, y = rev(Top_1_shares) + 0.5, label = rev(Top_1_shares))
+g2 <- ggplot() +
+  geom_bar(data = OECD_shares_2012[c("Top_10_shares", "Country.order.10")], aes(x = Country.order.10, y = Top_10_shares), stat = "identity", fill = "greenyellow") +
+  theme_bw() + 
+  theme.kr + 
+ coord_flip() +
+  xlab("") + ylab("") + ggtitle("상위 10% 소득점유율(%)") +
+  annotate("text", x = 1:19, y = Top_10_shares[rev(o.top_10)] + 1.5, label = Top_10_shares[rev(o.top_10)])
+grid.arrange(g1, g2, ncol = 2)
+```
+
