@@ -36,8 +36,35 @@ str(US.top.income.shares.14)
 kable(US.top.income.shares.14[c(11:20, 41:51, 91:102),])
 ```
 
+### Top 10%의 소득점유율
 
-### Top 10%
+소득 상위 10%(`P90_100`)의 소득점유율 변화
+
+```{r, top 10, echo = FALSE, message = FALSE, warning = FALSE, fig.width = 12, fig.height = 6.75}
+# png(file = "../pics/US_top_income_share_10_2014_72dpi_en.png", width = 864, height = 486)
+# png(file = "../pics/US_top_income_share_10_2014_300dpi_en.png", width = 1280, height = 720)
+x.lab <- "Year"
+y.lab <- "Income Shares (%)"
+plot(P90_100 ~ Year, data = US.top.income.shares.14, xlab = x.lab, ylab = y.lab, xlim = c(1910, 2020), ylim = c(30, 52), xaxt = "n", type = "b", pch = 17)
+axis(side = 1, at = seq(1910, 2020, by = 10), labels = seq(1910, 2020, by = 10))
+# lines(P95_99 ~ Year, data = US.top.income.shares.14, type = "b", pch = 17, col = "red")
+# lines(P90_95 ~ Year, data = US.top.income.shares.14, type = "b", pch = 17, col = "blue")
+abline(h = seq(30, 50, by = 5), lty = 3)
+abline(v = seq(1910, 2020, by = 10), lty = 3)
+# legend.text <- "Top 10% (incomes above $121,360 in 2014)")
+# legend(x = 1940, y = 25, legend = legend.text, pch = 17, col = "black")
+main.title<- "Top 10% US Income Share (1917 ~ 2014)"
+title(main = main.title)
+text(x = c(1927.5, 2007, 2012.5), y = c(50, 50, 51), labels = c("1928", "2007", "2012"), pos = 3)
+times.label <- c("The Great\nDepression", "The Great\nProsperity", "The Great\nRecession")
+text(x = c(1935, 1965, 2015), y = c(48.5, 32, 46.5), label = times.label, cex = 1.0, col = "red")
+# dev.copy(png, file = "../pics/US_top_income_share_1-4-5_2014_en.png", width = 960, height = 540)
+# dev.off()
+```
+
+
+
+### Top 10% 분할
 
 소득 상위 10%(`P90_100`)를 상위 1%(`P99_100`), 차상위 4%(`P95_99`), 차차상위 5%(`P90_95`)로 분할
 
@@ -46,19 +73,19 @@ kable(US.top.income.shares.14[c(11:20, 41:51, 91:102),])
 # png(file = "../pics/US_top_income_share_1-4-5_2014_300dpi_en.png", width = 1280, height = 720)
 x.lab <- "Year"
 y.lab <- "Income Shares (%)"
-plot(P99_100 ~ Year, data = US.top.income.shares.14, xlab = x.lab, ylab = y.lab, ylim = c(5, 25), xaxt = "n", type = "b", pch = 17)
-axis(side = 1, at = seq(1910, 2010, by = 10), labels = seq(1910, 2010, by = 10))
+plot(P99_100 ~ Year, data = US.top.income.shares.14, xlab = x.lab, ylab = y.lab, xlim = c(1910, 2020), ylim = c(5, 25), xaxt = "n", type = "b", pch = 17)
+axis(side = 1, at = seq(1910, 2020, by = 10), labels = seq(1910, 2020, by = 10))
 lines(P95_99 ~ Year, data = US.top.income.shares.14, type = "b", pch = 17, col = "red")
 lines(P90_95 ~ Year, data = US.top.income.shares.14, type = "b", pch = 17, col = "blue")
 abline(h = seq(5, 25, by = 5), lty = 3)
-abline(v = seq(1910, 2010, by = 10), lty = 3)
+abline(v = seq(1910, 2020, by = 10), lty = 3)
 legend.text.1 <- c("Top 1% (incomes above $423,090 in 2014)", "Top 5-1% (incomes between $174,240 and $423,090)", "Top 10-5% (incomes between $121,360 and $174,240)")
 legend(x = 1940, y = 25, legend = legend.text.1, pch = 17, col = c("black", "red", "blue"))
 main.title.1 <- "Decomposing the Top 10% US Income Share (1913 ~ 2014)"
 title(main = main.title.1)
 text(x = c(1924, 2007), y = c(23.5, 23.5), labels = c("1928", "2007"), pos = 3)
 times.label <- c("The Great\nDepression", "The Great\nProsperity", "The Great\nRecession")
-text(x = c(1935, 1965, 2014), y = c(22, 8, 18), label = times.label, cex = 1.0, col = "red")
+text(x = c(1935, 1965, 2015), y = c(22, 8, 18), label = times.label, cex = 1.0, col = "red")
 # dev.copy(png, file = "../pics/US_top_income_share_1-4-5_2014_en.png", width = 960, height = 540)
 # dev.off()
 ```
@@ -69,26 +96,26 @@ text(x = c(1935, 1965, 2014), y = c(22, 8, 18), label = times.label, cex = 1.0, 
 
 ----
 
-### Top 1% 
+### Top 1% 분할
 
 소득 상위 1%(`P99_100`)를 상위 0.1%(`P99.9_100`), 차상위 0.4%(`P99.5_99.9`), 차차상위 0.5%(`P99_99.5`)로 분할
 
 ```{r, partiotion top 1, echo = FALSE, message = FALSE, warning = FALSE, fig.width = 12, fig.height = 6.75}
 # png(file = "../pics/US_top_income_share_0.1-0.4-0.5_2014_72dpi_en.png", width = 864, height = 486)
 # png(file = "../pics/US_top_income_share_0.1-0.4-0.5_2014_300dpi_en.png", width = 1280, height = 720)
-plot(P99.9_100 ~ Year, data = US.top.income.shares.14, xlab = x.lab, ylab = y.lab, ylim = c(0, 13), xaxt = "n", yaxt = "n", type = "b", pch = 17)
-axis(side = 1, at = seq(1910, 2010, by = 10), labels = seq(1910, 2010, by = 10))
+plot(P99.9_100 ~ Year, data = US.top.income.shares.14, xlab = x.lab, ylab = y.lab, xlim = c(1910, 2020), ylim = c(0, 13), xaxt = "n", yaxt = "n", type = "b", pch = 17)
+axis(side = 1, at = seq(1910, 2020, by = 10), labels = seq(1910, 2020, by = 10))
 axis(side = 2, at = seq(0, 12, by = 3), labels = seq(0, 12, by = 3))
 lines(P99.5_99.9 ~ Year, data = US.top.income.shares.14, type = "b", pch = 17, col = "red")
 lines(P99_99.5 ~ Year, data = US.top.income.shares.14, type = "b", pch = 17, col = "blue")
 abline(h = seq(0, 12, by = 3), lty = 3)
-abline(v = seq(1910, 2010, by = 10), lty = 3)
+abline(v = seq(1910, 2020, by = 10), lty = 3)
 legend.text.2 <- c("Top 0.1% (incomes above $1,894,100 in 2014)", "Top 0.5-0.1% (incomes between $646,550 and $1,894,100)", "Top 1-0.5% (incomes between $423,090 and $646,550)")
-legend(x = 1938, y = 13, legend = legend.text.2, pch = 17, col = c("black", "red", "blue"))
+legend(x = 1936, y = 13, legend = legend.text.2, pch = 17, col = c("black", "red", "blue"))
 main.title.2 <- "Decomposing the Top 1% US Income Share (1913 ~ 2014)"
 title(main = main.title.2)
 text(x = c(1924, 2007), y = c(11, 12.5), labels = c("1928", "2007"), pos = 3)
-text(x = c(1935, 1965, 2014), y = c(10, 2, 8), label = times.label, cex = 1.0, col = "red")
+text(x = c(1935, 1965, 2015), y = c(10, 2, 8), label = times.label, cex = 1.0, col = "red")
 # dev.copy(png, file = "../pics/US_top_income_share_0.1-0.4-0.5_2014_en.png", width = 960, height = 540)
 # dev.off()
 ```
@@ -101,24 +128,24 @@ text(x = c(1935, 1965, 2014), y = c(10, 2, 8), label = times.label, cex = 1.0, c
 
 ---
 
-### Top 0.1% 
+### Top 0.1% 분할
 
 소득 상위 0.1%(`P99.9_100`)를 상위 0.01%(`P99.99_100`)와 다음 0.09%(`P99_9.99.99`)로 분할
 
 ```{r, partiotion top 1 0.01 vs 0.99, echo = FALSE, message = FALSE, warning = FALSE, fig.width = 12, fig.height = 6.75}
 # png(file = "../pics/US_top_income_share_0.01-0.09_2014_72dpi_en.png", width = 864, height = 486)
 # png(file = "../pics/US_top_income_share_0.01-0.09_2014_300dpi_en.png", width = 1280, height = 720)
-plot(P99.99_100 ~ Year, data = US.top.income.shares.14, xlab = x.lab, ylab = y.lab, ylim = c(0, 7), xaxt = "n", type = "b", pch = 17)
-axis(side = 1, at = seq(1910, 2010, by = 10), labels = seq(1910, 2010, by = 10))
+plot(P99.99_100 ~ Year, data = US.top.income.shares.14, xlab = x.lab, ylab = y.lab, xlim = c(1910, 2020), ylim = c(0, 7), xaxt = "n", type = "b", pch = 17)
+axis(side = 1, at = seq(1910, 2020, by = 10), labels = seq(1910, 2020, by = 10))
 lines(P99.9_99.99 ~ Year, data = US.top.income.shares.14, type = "b", pch = 17, col = "blue")
 abline(h = seq(0, 6, by = 2), lty = 3)
-abline(v = seq(1910, 2010, by = 10), lty = 3)
+abline(v = seq(1910, 2020, by = 10), lty = 3)
 legend.text.3 <- c("Top 0.01% (incomes above $9,497,900 in 2014)", "Top 0.1-0.01% (incomes between $1,894,100 and $9,497,900)")
-legend(x = 1938, y = 7, legend = legend.text.3, pch = 17, col = c("black", "blue"))
+legend(x = 1934, y = 7, legend = legend.text.3, pch = 17, col = c("black", "blue"))
 main.title.3 <- "Decomposing the Top 0.1% US Income Share (1913 ~ 2014)"
 title(main = main.title.3)
 text(x = c(1924, 2007), y = c(6.3, 6.3), labels = c("1928", "2007"), pos = 3)
-text(x = c(1935, 1965, 2014), y = c(5.6, 0.5, 3.4), label = times.label, cex = 1.0, col = "red")
+text(x = c(1935, 1965, 2015), y = c(5.6, 0.5, 3.4), label = times.label, cex = 1.0, col = "red")
 # dev.print(png, file = "../pics/US_top_income_share_0.01-0.09_2014_en.png", width = 960, height = 540)
 # dev.off()
 ```
@@ -137,6 +164,7 @@ text(x = c(1935, 1965, 2014), y = c(5.6, 0.5, 3.4), label = times.label, cex = 1
 
 ```{r, reshape, echo = FALSE}
 library(reshape2)
+data.10.df <- US.top.income.shares.14[c("Year", "P90_100")]
 data.10 <- US.top.income.shares.14[c("Year", "P99_100", "P95_99", "P90_95")]
 data.10.melt <- melt(data.10, id.vars = "Year", measure.vars = c("P99_100", "P95_99", "P90_95"), variable.name = "Percentiles", value.name = "Share")
 # str(data.10.melt)
@@ -148,15 +176,53 @@ data.01.melt <- melt(data.01, id.vars = "Year", measure.vars = c("P99.99_100", "
 # str(data.01.melt)
 ```
 
-### Top 10% 
+### Top 10%의 소득점유율(%)
+
+```{r, Top 10 shares change, warning = FALSE, echo = FALSE, fig.width = 12, fig.height = 6.75}
+library(ggplot2)
+f0 <- ggplot(data.10.df, aes(x = Year, y = P90_100)) + 
+  geom_line(na.rm = TRUE) + 
+  geom_point(shape = 24, fill = 1, size = 2, na.rm = TRUE) 
+# f0
+f1 <- f0 + 
+  theme_bw()
+# f1
+f2 <- f1 + 
+   theme(panel.grid.major = element_line(linetype = "dotted", colour = "black"))
+# f2
+f3 <- f2 + 
+  scale_x_continuous(breaks = seq(1910, 2020, by = 10), limits = c(1910, 2020)) +
+  scale_y_continuous(breaks = seq(30, 50, by = 5), limits = c(30, 52))
+# f3
+f4 <- f3 + 
+   theme.kr + 
+   xlab(x.lab) + 
+   ylab(y.lab)
+# f4
+f5 <- f4 + 
+   ggtitle(main.title) + 
+   theme(plot.title = element_text(size = 20))
+f6 <- f5 + 
+   annotate("text", x = c(1927.5, 2007, 2012.5), y = c(50.5, 50.5, 51.5), label = c(1928, 2007, 2012))
+# f6
+f7 <- f6 + 
+  annotate("text", x = c(1935, 1965, 2015), y = c(48.5, 32, 46.5), label = times.label, colour = "red", size = 4)
+```
+
+```{r, Top 10 percent share ggsave, warning = FALSE, echo = FALSE, fig.width = 12, fig.height = 6.75}
+f7
+# ggsave("../pics/US_top_income_share_10_2014_ggplot_en.png", width = 12, height = 6.75)
+```
+
+
+### Top 10%의 분할 
 
 ```{r, Top 10 percent, warning = FALSE, echo = FALSE, fig.width = 12, fig.height = 6.75}
 # source("./theme_kr.R")
 library(ggplot2)
 g0 <- ggplot(data.10.melt, aes(x = Year, y = Share, colour = Percentiles)) + 
   geom_line(na.rm = TRUE) + 
-  geom_point(shape = 24, aes(fill = Percentiles), size = 2, na.rm = TRUE) + 
-  ylim(5, 25)
+  geom_point(shape = 24, aes(fill = Percentiles), size = 2, na.rm = TRUE) 
 # g0
 g1 <- g0 + 
   theme_bw()
@@ -165,7 +231,8 @@ g2 <- g1 +
    theme(panel.grid.major = element_line(linetype = "dotted", colour = "black"))
 # g2
 g3 <- g2 + 
-  scale_x_continuous(breaks = seq(1910, 2010, by = 10))
+  scale_x_continuous(breaks = seq(1910, 2020, by = 10), limits = c(1910, 2020)) +
+  scale_y_continuous(breaks = seq(5, 25, by = 5), limits = c(5, 25))
 # g3
 g4 <- g3 + 
 #   theme.kr + 
@@ -200,7 +267,7 @@ g12 <- g11 +
 # g12
 g13 <- g12 + 
 #  annotate("text", x = c(1935, 1960, 2014), y = c(22, 8, 18), label = times.label, colour = "red", family = "HCR Dotum LVT", size = 8)
-  annotate("text", x = c(1935, 1965, 2014), y = c(22, 8, 18), label = times.label, colour = "red", size = 4)
+  annotate("text", x = c(1935, 1965, 2015), y = c(22, 8, 18), label = times.label, colour = "red", size = 4)
 
 ```
 
@@ -209,13 +276,12 @@ g13
 # ggsave("../pics/US_top_income_share_1-4-5_2014_ggplot_en.png", width = 12, height = 6.75)
 ```
 
-### Top 1% 
+### Top 1%의 분할 
 
 ```{r, Top 1 percent, warning = FALSE, echo = FALSE, fig.width = 12, fig.height = 6.75}
 h0 <- ggplot(data.1.melt, aes(x = Year, y = Share, colour = Percentiles)) + 
   geom_line(na.rm = TRUE) + 
   geom_point(shape = 24, aes(fill = Percentiles), size = 2, na.rm = TRUE)
-# ylim(0, 13)
 # h0
 h1 <- h0 + 
   theme_bw()
@@ -224,7 +290,7 @@ h2 <- h1 +
    theme(panel.grid.major = element_line(linetype = "dotted", colour = "black"))
 # h2
 h3 <- h2 + 
-  scale_x_continuous(breaks = seq(1910, 2010, by = 10)) +
+  scale_x_continuous(breaks = seq(1910, 2020, by = 10), limits = c(1910, 2020)) +
   scale_y_continuous(breaks = seq(0, 12, by = 3), limits = c(0, 13))
 # h3
 h4 <- h3 + 
@@ -260,7 +326,7 @@ h12 <- h11 +
 # h12
 h13 <- h12 + 
 #  annotate("text", x = c(1935, 1960, 2014), y = c(9, 2, 8), label = times.label, colour = "red", family = "HCR Dotum LVT", size = 8)
-  annotate("text", x = c(1935, 1965, 2014), y = c(10, 2, 8), label = times.label, colour = "red", size = 4)
+  annotate("text", x = c(1935, 1965, 2015), y = c(10, 2, 8), label = times.label, colour = "red", size = 4)
 ```
 
 ```{r, Top 1 percent ggsave, warning = FALSE, echo = FALSE, fig.width = 12, fig.height = 6.75}
@@ -268,13 +334,12 @@ h13
 # ggsave("../pics/US_top_income_share_0.1-0.4-0.5_2014_ggplot_en.png", width = 12, height = 6.75)
 ```
 
-### Top 0.1% 
+### Top 0.1%의 분할 
 
 ```{r, Top 0.1 percent, warning = FALSE, echo = FALSE, fig.width = 12, fig.height = 6.75}
 j0 <- ggplot(data.01.melt, aes(x = Year, y = Share, colour = Percentiles)) + 
   geom_line(na.rm = TRUE) + 
   geom_point(shape = 24, aes(fill = Percentiles), size = 2, na.rm = TRUE)
-#  ylim(0, 8)
 # j0
 j1 <- j0 + 
   theme_bw()
@@ -283,7 +348,7 @@ j2 <- j1 +
    theme(panel.grid.major = element_line(linetype = "dotted", colour = "black"))
 # j2
 j3 <- j2 + 
-  scale_x_continuous(breaks = seq(1910, 2010, by = 10)) + 
+  scale_x_continuous(breaks = seq(1910, 2020, by = 10), limits = c(1910, 2020)) + 
   scale_y_continuous(breaks = seq(0, 6, by = 2), limits = c(0, 7))
 # j3
 j4 <- j3 + 
@@ -319,7 +384,7 @@ j12 <- j11 +
 # j12
 j13 <- j12 + 
 #  annotate("text", x = c(1935, 1960, 2014), y = c(5.6, 2.8, 3.0), label = times.label, colour = "red", family = "HCR Dotum LVT", size = 8)
-  annotate("text", x = c(1935, 1965, 2014), y = c(5.6, 0.5, 3.5), label = times.label, colour = "red", size = 4)
+  annotate("text", x = c(1935, 1965, 2015), y = c(5.6, 0.5, 3.5), label = times.label, colour = "red", size = 4)
 ```
 
 ```{r, Top 0.1 percent ggsave, warning = FALSE, echo = FALSE, fig.width = 12, fig.height = 6.75}
