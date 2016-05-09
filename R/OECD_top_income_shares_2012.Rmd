@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r, data, echo = FALSE}
 library(knitr)
 Country <- c("Netherlands", "Denmark", "Sweden", "Finland", "Norway", "France", "New_Zealand", "Spain", "Australia", "Italia", "Japan", "Portugal", "Ireland", "Switzerland", "Germany", "Canada", "Korea", "UK", "USA")
-Country.kr <- c("네덜란드", "덴마크", "스웨덴", "핀란드", "노르웨이", "프랑스", "뉴질랜드", "스페인", "호주", "이탈리아", "일본", "포르투갈", "아일랜드", "스위스", "독일", "캐나다", "한국", "영국", "미국")
+# Country.kr <- c("네덜란드", "덴마크", "스웨덴", "핀란드", "노르웨이", "프랑스", "뉴질랜드", "스페인", "호주", "이탈리아", "일본", "포르투갈", "아일랜드", "스위스", "독일", "캐나다", "한국", "영국", "미국")
 Top_1_shares <- c(6.33, 6.41, 7.13, 7.46, 7.80, 8.08, 8.13, 8.20, 9.17, 9.38, 9.51, 9.77, 10.50, 10.54, 10.88, 12.22, 12.23, 12.93, 19.34)
 Top_10_shares <- c(30.90, 26.88, 27.90, 32.50, 28.33, 32.69, 30.88, 31.64, 30.98, 33.87, 40.50, 38.25, 36.13, 33.15, 34.71, 40.12, 44.87, 39.15, 48.16)
 OECD_shares_2012 <- data.frame(Country, Top_1_shares, Top_10_shares)
