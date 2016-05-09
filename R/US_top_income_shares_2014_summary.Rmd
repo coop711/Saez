@@ -62,6 +62,15 @@ text(x = c(1935, 1965, 2015), y = c(48.5, 32, 46.5), label = times.label, cex = 
 # dev.off()
 ```
 
+----
+
+----
+
+----
+
+----
+
+----
 
 ### Top 10%의 분할
 
@@ -214,6 +223,9 @@ f7
 # ggsave("../pics/US_top_income_share_10_2014_ggplot.png", width = 12, height = 6.75)
 ```
 
+----
+
+----
 
 ### Top 10%의 분할 
 
@@ -272,6 +284,10 @@ g13
 # ggsave("../pics/US_top_income_share_1-4-5_2014_ggplot.png", width = 12, height = 6.75)
 ```
 
+----
+
+----
+
 ### Top 1%의 분할 
 
 ```{r, Top 1 percent, warning = FALSE, echo = FALSE, fig.width = 12, fig.height = 6.75}
@@ -328,6 +344,11 @@ h13 <- h12 +
 h13
 # ggsave("../pics/US_top_income_share_0.1-0.4-0.5_2014_ggplot.png", width = 12, height = 6.75)
 ```
+
+----
+
+----
+
 
 ### Top 0.1%의 분할 
 
