@@ -78,7 +78,7 @@ g2 <- ggplot(data = OECD_shares_2012[c("Top_10_shares", "Country.order.10")]) +
   coord_flip() +
   xlab("") + ylab("") + 
   ggtitle("Top 10% Income Share") +
-  ggtitle("상위 10% 소득점유율(%)") +
+# ggtitle("상위 10% 소득점유율(%)") +
   scale_y_continuous(breaks = NULL)
 # annotate("text", x = 1:19, y = Top_10_shares[rev(o.top_10)] + 2.5, label = Top_10_shares[rev(o.top_10)])
 grid.arrange(g1, g2, ncol = 2)
