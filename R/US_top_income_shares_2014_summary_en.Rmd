@@ -141,7 +141,7 @@ lines(P99.9_99.99 ~ Year, data = US.top.income.shares.14, type = "b", pch = 17, 
 abline(h = seq(0, 6, by = 2), lty = 3)
 abline(v = seq(1910, 2020, by = 10), lty = 3)
 legend.text.3 <- c("Top 0.01% (incomes above $9,497,900 in 2014)", "Top 0.1-0.01% (incomes between $1,894,100 and $9,497,900)")
-legend(x = 1934, y = 7, legend = legend.text.3, pch = 17, col = c("black", "blue"))
+legend(x = 1937, y = 6.95, legend = legend.text.3, pch = 17, col = c("black", "blue"))
 main.title.3 <- "Decomposing the Top 0.1% US Income Share (1913 ~ 2014)"
 title(main = main.title.3)
 text(x = c(1924, 2007), y = c(6.3, 6.3), labels = c("1928", "2007"), pos = 3)
