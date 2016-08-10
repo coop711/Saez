@@ -53,8 +53,8 @@ title(main = main.title)
 text(x = c(1927.5, 2007, 2012.5), y = c(50, 50, 51), labels = c("1928", "2007", "2012"), pos = 3)
 times.label <- c("대공황", "대번영", "대침체")
 text(x = c(1935, 1965, 2015), y = c(48.5, 32, 46.5), label = times.label, cex = 1.5, col = "red")
-dev.copy(png, file = "../pics/US_top_income_share_1-4-5_2015_kr.png", width = 960, height = 540)
-dev.off()
+# dev.copy(png, file = "../pics/US_top_income_share_1-4-5_2015_kr.png", width = 960, height = 540)
+# dev.off()
 ```
 
 ### Top 10% 분할
@@ -77,8 +77,8 @@ main.title.1 <- "미국 상위 10% 소득 점유 분할 (1913 ~ 2015)"
 title(main = main.title.1)
 text(x = c(1924, 2007), y = c(23.5, 23.5), labels = c("1928", "2007"), pos = 3)
 text(x = c(1935, 1965, 2015), y = c(22, 8, 18), label = times.label, cex = 1.5, col = "red")
-dev.copy(png, file = "../pics/US_top_income_share_1-4-5_2015_kr.png", width = 960, height = 540)
-dev.off()
+# dev.copy(png, file = "../pics/US_top_income_share_1-4-5_2015_kr.png", width = 960, height = 540)
+# dev.off()
 ```
 
 <P style="page-break-before:always">
@@ -104,8 +104,8 @@ main.title.2 <- "미국 상위 1% 소득 점유 분할 (1913 ~ 2015)"
 title(main = main.title.2)
 text(x = c(1924, 2007), y = c(11, 12.5), labels = c("1928", "2007"), pos = 3)
 text(x = c(1935, 1965, 2015), y = c(10, 2, 8), label = times.label, cex = 1.5, col = "red")
-dev.copy(png, file = "../pics/US_top_income_share_0.1-0.4-0.5_2015_kr.png", width = 960, height = 540)
-dev.off()
+# dev.copy(png, file = "../pics/US_top_income_share_0.1-0.4-0.5_2015_kr.png", width = 960, height = 540)
+# dev.off()
 ```
 
 ### Top 0.1% 분할
@@ -127,8 +127,8 @@ main.title.3 <- "미국 상위 0.1% 소득 점유 분할 (1913 ~ 2015)"
 title(main = main.title.3)
 text(x = c(1924, 2007), y = c(6.3, 6.3), labels = c("1928", "2007"), pos = 3)
 text(x = c(1935, 1965, 2015), y = c(5.6, 0.5, 3.4), label = times.label, cex = 1.5, col = "red")
-dev.copy(png, file = "../pics/US_top_income_share_0.01-0.09_2015_kr.png", width = 960, height = 540)
-dev.off()
+# dev.copy(png, file = "../pics/US_top_income_share_0.01-0.09_2015_kr.png", width = 960, height = 540)
+# dev.off()
 ```
 
 <P style="page-break-before:always">
@@ -189,7 +189,7 @@ f7 <- f6 +
 
 ```{r, Top 10 percent share ggsave, warning = FALSE, echo = FALSE, fig.width = 12, fig.height = 6.75}
 f7
-ggsave("../pics/US_top_income_share_10_2015_ggplot_kr.png", width = 12, height = 6.75)
+# ggsave("../pics/US_top_income_share_10_2015_ggplot_kr.png", width = 12, height = 6.75)
 ```
 
 
@@ -251,7 +251,7 @@ g13 <- g12 +
 
 ```{r, Top 10 percent ggsave, warning = FALSE, echo = FALSE, fig.width = 12, fig.height = 6.75}
 g13
-ggsave("../pics/US_top_income_share_1-4-5_2015_ggplot_kr.png", width = 12, height = 6.75)
+# ggsave("../pics/US_top_income_share_1-4-5_2015_ggplot_kr.png", width = 12, height = 6.75)
 ```
 
 <P style="page-break-before:always">
@@ -311,7 +311,7 @@ h13 <- h12 +
 
 ```{r, Top 1 percent ggsave, warning = FALSE, echo = FALSE, fig.width = 12, fig.height = 6.75}
 h13
-ggsave("../pics/US_top_income_share_0.1-0.4-0.5_2015_ggplot_kr.png", width = 12, height = 6.75)
+# ggsave("../pics/US_top_income_share_0.1-0.4-0.5_2015_ggplot_kr.png", width = 12, height = 6.75)
 ```
 
 ### Top 0.1%의 분할 
@@ -369,7 +369,7 @@ j13 <- j12 +
 
 ```{r, Top 0.1 percent ggsave, warning = FALSE, echo = FALSE, fig.width = 12, fig.height = 6.75}
 j13
-ggsave("../pics/US_top_income_share_0.01-0.09_2015_ggplot_kr.png", width = 12, height = 6.75)
+# ggsave("../pics/US_top_income_share_0.01-0.09_2015_ggplot_kr.png", width = 12, height = 6.75)
 ```
 
 

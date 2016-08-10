@@ -9,16 +9,29 @@ output: html_document
 
 준비한 자료는  [E. Saez 교수의 홈페이지](http://elsa.berkeley.edu/~saez/)에 있는 `TabFig2015prel.xls` 와 [Tax Foundation](http://taxfoundation.org/)에서 제공하는 자료를 손봐서 불러들인 것이다. 
 
-```{r, data preparation, message = FALSE, echo = FALSE, results = 'hide'}
+```{r, data preparation, message = FALSE, echo = FALSE, results = 'markup'}
 options(digits = 2)
 library(xlsx)
 library(knitr)
 load("US_top_income_shares_2015_add.rda")
-load("US_top_income_shares_vs_tax_rates_2015.rda")
+# load("US_top_income_shares_vs_tax_rates_2015.rda")
+# US.top.income.shares.15 <- read.xlsx("../data/TabFig2015prel.xlsx", sheetIndex = 9, sheetName = "Table A3", startRow = 6, endRow = 108, colIndex = c(1:7, 9:13), header = FALSE)
+US.income.averages.15 <- read.xlsx("../data/TabFig2015prel.xlsx", sheetIndex = 51, sheetName = "data-FigA1", startRow = 4, endRow = 106, colIndex = c(1:3, 5:6), header = FALSE)
+# v.names <- read.xlsx("./data/TabFig2015prel.xlsx", sheetName = "Table A3", startRow = 4, endRow = 4, colIndex = c(2:7, 9:14), colClasses = character, header = FALSE)
 # str(US.top.income.shares.15)
-# kable(cbind(top.income_tax, Rate_99 = Rate_99, Rate_1 = Rate_1, Rate_99_K = Rate_99_K, Rate_1_K = Rate_1_K))
+v.names <- c("Year", "Bottom_99", "Top_1", "Bottom_99_K", "Top_1_K")
+names(US.income.averages.15) <- v.names
+tax.rates <- read.table("../data/federal_income_tax_rates.txt", skip = 1, header = FALSE)
+names(tax.rates) <- c("Year", "Lowest", "Marginal")
+top.income_tax <- cbind(US.top.income.shares.15[c("Year", "P99_100")], US.income.averages.15[c("Bottom_99", "Top_1", "Bottom_99_K", "Top_1_K")], tax.rates[2:3])
+Rate_99 <- US.income.averages.15[, "Bottom_99"]/US.income.averages.15[, "Bottom_99"][1]*100
+Rate_1 <- US.income.averages.15[, "Top_1"]/US.income.averages.15[, "Top_1"][1]*100
+Rate_99_K <- US.income.averages.15[, "Bottom_99_K"]/US.income.averages.15[, "Bottom_99_K"][1]*100
+Rate_1_K <- US.income.averages.15[, "Top_1_K"]/US.income.averages.15[, "Top_1_K"][1]*100
+kable(cbind(top.income_tax, Rate_99 = Rate_99, Rate_1 = Rate_1, Rate_99_K = Rate_99_K, Rate_1_K = Rate_1_K))
 ```
 
+<!--
 이 중에서 소득 상위 1%(`P99_100`)몫과 최고세율(Marginal Tax Rates) 간의 관계를 살펴보자
 
 ```{r, top 1 percent shares vs MTR, echo = FALSE, fig.width = 12, fig.height = 6.75}
@@ -90,10 +103,11 @@ text(x = 1925, y = 82, labels = "Top Marginal Tax Rates", cex = 1.2)
 # dev.copy(png, file ="../pics/US_Income_Growth_vs_MTR_K.png", width = 960, height = 540)
 # dev.off()
 ```
+-->
 
 <!--## 뒷 정리
 
 ```{r, save.image}
-# save.image(file = "US_top_income_shares_vs_tax_rates_2015.rda")
+save.image(file = "US_top_income_shares_vs_tax_rates_2015.rda")
 ```
 -->
