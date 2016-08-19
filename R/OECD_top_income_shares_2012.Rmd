@@ -29,9 +29,9 @@ kable(data.frame(OECD_shares_2012, OECD_shares_2012[o.top_1, -3], OECD_shares_20
 
 ## Bar Plots
 
-```{r, barplots, echo = FALSE, fig.width = 12, fig.height = 8}
-# png(file = "../pics/OECD_Top_Income_Shares_72dpi.png", width = 864, height = 648)
-# png(file = "../pics/OECD_Top_Income_Shares_300dpi.png", width = 1280, height = 960)
+```{r, barplots, echo = FALSE, fig.width = 12, fig.height = 7}
+# png(file = "../pics/OECD_Top_Income_Shares_72dpi.png", width = 864, height = 504)
+# png(file = "../pics/OECD_Top_Income_Shares_300dpi.png", width = 1280, height = 747)
 # par(mfrow = c(1, 2))
 par(mfrow = c(1, 2), mai = c(1.0, 1.8, 0.8, 0.4) + 0.2)
 x1 <- barplot(Top_1_shares[o.top_1], horiz = TRUE, col = "cyan", axes = FALSE, names.arg = Country[o.top_1], xlim = c(0, 25), space = 0.5, las = 1)
@@ -49,7 +49,7 @@ title(main = title.10)
 # title(main = "상위 10% 소득점유율(%)")
 text(Top_10_shares[o.top_10] + 6.0, x10, labels = Top_10_shares[o.top_10], cex = 1)
 # text(Top_10_shares + 6.0, x10, labels = Top_10_shares, cex = 1)
-# dev.copy(png, file = "../pics/OECD_Top_Income_Shares_2012.png", width = 960, height = 720)
+# dev.copy(png, file = "../pics/OECD_Top_Income_Shares_2012.png", width = 960, height = 560)
 # dev.off()
 ```
 
