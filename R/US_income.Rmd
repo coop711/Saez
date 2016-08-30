@@ -1,0 +1,70 @@
+---
+title: "US income"
+author: "coop711"
+date: "2016년 8월 20일"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Data
+
+```{r data, echo = FALSE}
+library(knitr)
+us.income <- read.table("../data/income level.txt", header = FALSE, row.names = 1, colClasses = c("character", "integer", "numeric"))
+names(us.income) <- c("Population", "Mean.income")
+kable(us.income)
+```
+
+## 소득계층별 평균
+
+### 총액
+
+```{r, total, echo=FALSE}
+sums <- us.income[, 1] * us.income[, 2]
+total <- sum(us.income[, 1] * us.income[, 2])
+total <- total / 1000000000
+average <- sum(us.income[, 1] * us.income[, 2])/sum(us.income[, 1])
+```
+
+2015년 US 소득 총액은 `r format(total, digits = 4, big.mark = ",")`십억 달러, 평균 소득은 `r format(average, digits = 5, big.mark = ",")`달러. 
+
+### 하위 90%
+
+```{r, bottom 90%, echo=FALSE}
+total.90 <- sum(us.income[1, 1] * us.income[1, 2])/1000000000
+average.90 <- sum(us.income[1, 1] * us.income[1, 2])/sum(us.income[1, 1])
+```
+
+2015년 US 하위 90%의 소득 총액은 `r format(total.90, digits = 4, big.mark = ",")`십억 달러, 평균 소득은 `r format(average.90, digits = 5, big.mark = ",")`달러. 
+
+
+### 상위 10%
+
+```{r, top 10%, echo=FALSE}
+total.10 <- sum(us.income[2:7, 1] * us.income[2:7, 2])/1000000000
+average.10 <- sum(us.income[2:7, 1] * us.income[2:7, 2])/sum(us.income[2:7, 1])
+```
+
+2015년 US 상위 10%의 소득 총액은 `r format(total.10, digits = 4, big.mark = ",")`십억 달러, 평균 소득은 `r format(average.10, digits = 5, big.mark = ",")`달러. 
+
+
+### 하위 99%
+
+```{r, bottom 99%, echo=FALSE}
+total.99 <- sum(us.income[1:3, 1] * us.income[1:3, 2])/1000000000
+average.99 <- sum(us.income[1:3, 1] * us.income[1:3, 2])/sum(us.income[1:3, 1])
+```
+
+2015년 US 하위 99%의 소득 총액은 `r format(total.99, digits = 4, big.mark = ",")`십억 달러, 평균 소득은 `r format(average.99, digits = 5, big.mark = ",")`달러. 
+
+### 상위 1%
+
+```{r, top 1%, echo=FALSE}
+total.01 <- sum(us.income[4:7, 1] * us.income[4:7, 2])/1000000000
+average.01 <- sum(us.income[4:7, 1] * us.income[4:7, 2])/sum(us.income[4:7, 1])
+```
+
+2015년 US 상위 1%의 소득 총액은 `r format(total.01, digits = 4, big.mark = ",")`십억 달러, 평균 소득은 `r format(average.01, digits = 5, big.mark = ",")`달러. 
