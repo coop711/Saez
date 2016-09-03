@@ -11,7 +11,7 @@ output: html_document
 
 ```{r, data preparation, message = FALSE, echo = FALSE, results = 'hide'}
 options(digits = 2)
-library(xlsx)
+# library(xlsx)
 library(knitr)
 load("US_top_income_shares_2015_add.rda")
 load("US_top_income_shares_vs_tax_rates_2015.rda")
@@ -29,20 +29,20 @@ par(family = "HCR Dotum LVT")
 plot(P99_100 ~ Year, data = top.income_tax, type = "b", pch = 17, axes = FALSE, ann = FALSE, xlim = c(1910, 2020), ylim = c(5, 25))
 box()
 axis(side = 1, at = seq(1910, 2020, by = 10), labels = seq(1910, 2020, by = 10))
-axis(side = 2, at = seq(5, 25, by = 5), labels = seq(5, 25, by = 5), las = 1, ylab = "Top Income Share")
+axis(side = 2, at = seq(5, 25, by = 5), labels = seq(5, 25, by = 5), las = 1)
 mtext("상위 1% 소득점유율(%)", side = 2, line = 3)
 par(new = TRUE)
 plot(Marginal ~ Year, data = top.income_tax, type ="l", lty = 2, lwd = 2, col = "red", axes = FALSE, ann = FALSE, xlim = c(1910, 2020), ylim = c(0, 100))
 axis(side = 4, at = seq(0, 100, by = 20), labels = seq(0, 100, by = 20), las = 1)
 mtext("최고 한계세율(%)", side = 4, line = 3)
-title(main = "상위 1% 소득점유율과 최고 한계세율", xlab = "Year")
+title(main = "상위 1% 소득점유율과 최고 한계세율", xlab = "연도", cex.main = 1.5)
 text(x = 1955, y = 95, labels = "최고 한계세율", cex = 1.2)
 text(x = 1960, y = 15, labels = "상위 1% 소득점유율", cex = 1.2)
 # dev.copy(png, file ="../pics/US_Top_Income_Share_vs_MTR_kr.png", width = 960, height = 540)
 # dev.off()
 ``` 
 
-상위 1%의 소득 증가폭과 하위 99%의 소득 증가폭(자본소득 제외)을 최고세율의 변화와 함께 비교
+상위 1%의 소득 증가폭과 하위 99%의 소득 증가폭(자본이득 제외)을 최고세율의 변화와 함께 비교
 
 ```{r, top 1 and bottom 99 vs MTR, echo = FALSE, fig.width = 12, fig.height = 6.75}
 # png(file = "../pics/US_Income_Growth_vs_MTR_72dpi_kr.png", width = 864, height = 486)
@@ -62,7 +62,7 @@ plot(Marginal ~ Year, data = top.income_tax, type ="l", lty = 2, col = "red", lw
 axis(side = 4, at = seq(0, 100, by = 20), labels = seq(0, 100, by = 20), las = 1)
 ylab.4 <- "최고 한계세율(%)"
 mtext(ylab.4, side = 4, line = 3)
-title(main = "상위 1%와 하위 99% 소득 증가\n(자본이득 제외)", xlab = "연도")
+title(main = "상위 1%와 하위 99% 소득 증가\n(자본이득 제외)", xlab = "연도", cex.main = 1.5)
 legend("bottom", legend = c("하위 99%", "상위 1%"), pch = 24, col = "black", pt.bg = c("black", "white"), inset = 0.05)
 # legend("bottom", legend = c("Bottom 99%", "Top 1%"), pch = 24, col = "black", pt.bg = c("black", "white"))
 text(x = 1955, y = 95, labels = "최고 한계세율", cex = 1.2)
@@ -70,7 +70,7 @@ text(x = 1955, y = 95, labels = "최고 한계세율", cex = 1.2)
 # dev.off()
 ```
 
-상위 1%의 소득 증가폭과 하위 99%의 소득 증가폭(자본소득 포함)을 최고세율의 변화와 함께 비교
+상위 1%의 소득 증가폭과 하위 99%의 소득 증가폭(자본이득 포함)을 최고세율의 변화와 함께 비교
 
 ```{r, top 1 and bottom 99 vs MTR with K, echo = FALSE, fig.width = 12, fig.height = 6.75}
 # png(file = "../pics/US_Income_Growth_vs_MTR_72dpi_K_kr.png", width = 864, height = 486)
@@ -87,7 +87,7 @@ par(new = TRUE)
 plot(Marginal ~ Year, data = top.income_tax, type ="l", lty = 2, col = "red", lwd = 2, axes = FALSE, ann = FALSE, xlim = c(1910, 2020), ylim = c(0, 100))
 axis(side = 4, at = seq(0, 100, by = 20), labels = seq(0, 100, by = 20), las = 1)
 mtext("최고 한계세율(%)", side = 4, line = 3)
-title(main = "상위 1%와 하위 99% 소득 증가\n(자본이득 포함)", xlab = "연도")
+title(main = "상위 1%와 하위 99% 소득 증가\n(자본이득 포함)", xlab = "연도", cex.main = 1.5)
 legend("bottom", legend = c("하위 99%", "상위 1%"), pch = 24, col = "black", pt.bg = c("black", "white"), inset = 0.05)
 text(x = 1955, y = 95, labels = "최고 한계세율", cex = 1.2)
 # dev.copy(png, file ="../pics/US_Income_Growth_vs_MTR_K_kr.png", width = 960, height = 540)
