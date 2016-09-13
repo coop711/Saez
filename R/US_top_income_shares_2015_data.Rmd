@@ -1,5 +1,5 @@
 ---
-title: "US Top Income Share 2015 (Data)"
+title: "US Top Income Shares 1913-2015 (Data)"
 author: "coop711"
 date: "`r Sys.Date()`"
 output: html_document
@@ -12,9 +12,10 @@ output: html_document
 ```{r, data preparation, message = FALSE, echo = FALSE, results = 'hide'}
 options(digits = 3)
 library(xlsx)
-US.top.income.shares.15 <- read.xlsx("../data/TabFig2015prel.xlsx", sheetIndex = 9, sheetName = "Table A3", startRow = 6, endRow = 108, colIndex = c(1:7, 9:13), header = FALSE)
+US.top.income.shares.15 <- read.xlsx("../data/TabFig2015prel.xlsx", sheetIndex = 9, sheetName = "Table A3", startRow = 6, endRow = 108, colIndex = c(1:7, 9:13), colClasses = c("integer", rep("numeric", 12)), header = FALSE)
 v.names <- c("Year", "P90_100", "P95_100", "P99_100", "P99.5_100", "P99.9_100", "P99.99_100", "P90_95", "P95_99", "P99_99.5", "P99.5_99.9", "P99.9_99.99")
 names(US.top.income.shares.15) <- v.names
+str(US.top.income.shares.15)
 ls()
 ```
 
