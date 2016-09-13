@@ -1,3 +1,6 @@
 .Rproj.user
 .Rhistory
 .RData
+.rda
+.html
+./rsconnect/*

@@ -1,5 +1,5 @@
 ---
-title: "US Top Income Share 2015"
+title: "US Top Income Share 2015 (Data)"
 author: "coop711"
 date: "`r Sys.Date()`"
 output: html_document
@@ -10,7 +10,7 @@ output: html_document
 준비한 자료는  [E. Saez 교수의 홈페이지](http://elsa.berkeley.edu/~saez/)에 있는 `TabFig2015prel.xls` 를 손봐서 불러들인 것이다. 
 
 ```{r, data preparation, message = FALSE, echo = FALSE, results = 'hide'}
-options(digits = 2)
+options(digits = 3)
 library(xlsx)
 US.top.income.shares.15 <- read.xlsx("../data/TabFig2015prel.xlsx", sheetIndex = 9, sheetName = "Table A3", startRow = 6, endRow = 108, colIndex = c(1:7, 9:13), header = FALSE)
 v.names <- c("Year", "P90_100", "P95_100", "P99_100", "P99.5_100", "P99.9_100", "P99.99_100", "P90_95", "P95_99", "P99_99.5", "P99.5_99.9", "P99.9_99.99")
@@ -22,7 +22,7 @@ ls()
 
 ```{r, data structure, echo = FALSE}
 library(knitr)
-kable(US.top.income.shares.15)
+kable(format(US.top.income.shares.15, digits = 1, nsmall = 1), align = "r")
 ```
 
 ## Save Data
