@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = FALSE)
 준비한 자료는  [E. Saez 교수의 홈페이지](http://elsa.berkeley.edu/~saez/)에 있는 [`TabFig2015prel.xls`](http://eml.berkeley.edu//~saez/TabFig2015prel.xls) 를 손봐서 불러들인 것이다. 
 
 ```{r, data preparation, echo = FALSE, message = FALSE, results = 'hide'}
-options(digits = 2)
+options(digits = 3)
 load("US_top_income_shares_2015_add.rda")
 ls()
 ```
