@@ -29,5 +29,5 @@ kable(format(US.top.income.shares.15, digits = 1, nsmall = 1), align = "r")
 ## Save Data
 
 ```{r, save.image}
-save.image(file = "US_top_income_shares_2015_add.rda")
+save.image(file = "US_top_income_shares_2015.rda")
 ```
