@@ -261,7 +261,8 @@ colour 범례 없애기(colour 설정으로 나타나는 범례의 선 없애는
 
 ```{r, historical peaks, warning = FALSE, fig.width = 12, fig.height = 6.75}
 (g12 <- g11 + 
-   annotate("text", x = c(1928, 2007), y = c(y.1928, y.2007), label = c(1928, 2007)))
+#   geom_text(data = data.frame(x = c(1928, 2007), y = c(y.1928, y.2007)), aes(x = x, y = y)))
+  annotate("text", x = c(1928, 2007), y = c(y.1928, y.2007) + 0.7, label = c(1928, 2007)))
 ```
 
 
