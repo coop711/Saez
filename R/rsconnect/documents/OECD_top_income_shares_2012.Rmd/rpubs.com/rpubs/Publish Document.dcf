@@ -1,7 +1,7 @@
 name: Publish Document
 account: rpubs
 server: rpubs.com
-bundleId:
-        https://api.rpubs.com/api/v1/document/178941/8bcf0f8f393e41a095db3ae7c75817fb
+appId: https://api.rpubs.com/api/v1/document/178941/8bcf0f8f393e41a095db3ae7c75817fb
+bundleId: https://api.rpubs.com/api/v1/document/178941/8bcf0f8f393e41a095db3ae7c75817fb
 url: http://rpubs.com/kwlee58/178941
-when: 1462813169.8365
+when: 1475599378.22751
