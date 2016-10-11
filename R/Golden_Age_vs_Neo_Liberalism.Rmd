@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r, data, echo = FALSE}
 library(knitr)
-Fifth <- factor(1:5, labels = paste(c("Bottom", "Second", "Third", "Fourth", "Top"), "Fifth"))
+Fifth <- factor(1:5, labels = paste(c("Top", "Fourth", "Third", "Second", "Bottom"), "Fifth"))
 # Golden.Age <- rev(c(122, 101, 113, 115, 99))
 Golden.Age <- c(99, 115, 113, 101, 122)
 # Neo.Liberal <- rev(c(-4, 7, 15, 25, 55))
@@ -26,16 +26,16 @@ kable(Income.Gains.df)
 ## Bar Plots
 
 ```{r, barplots, echo = FALSE, fig.width = 12, fig.height = 6}
-# par(mfrow = c(1, 2), mai = c(1.0, 1.8, 0.8, 0.4) + 0.2)
-par(mfrow = c(1, 2))
+par(mfrow = c(1, 2), mai = c(1.0, 1.8, 0.8, 0.4) + 0.2)
+# par(mfrow = c(1, 2))
 x1 <- barplot(Golden.Age, horiz = TRUE, col = "tan", axes = FALSE, names.arg = "", xlim = c(0, 130), space = 0.5, las = 1, axisnames = TRUE)
-title.1 <- " Golden Age"
+title.1 <- "Golden Age\n1947 ~ 1979"
 title(main = title.1, cex.main = 2.0)
 abline(v = 0, lwd = 5)
 text(5, x1, labels = Fifth, cex = 1, adj = 0)
-text(Golden.Age - 10, x1, labels = paste(Golden.Age, "%", sep =""), cex = 1)
+text(Golden.Age + 10, x1, labels = paste(Golden.Age, "%", sep =""), cex = 1)
 x2 <- barplot(Neo.Liberal, horiz = TRUE, col = "cadetblue", axes = FALSE, names.arg = Fifth, xlim = c(0, 80), space = 0.5, las = 1, axisnames = TRUE)
-title.2 <- "Neo Liberalism"
+title.2 <- "Neo Liberalism\n1980 ~ 2009"
 title(main = title.2, cex.main = 2.0)
 abline(v = 0, lwd = 5)
 text(Neo.Liberal + c(rep(5, 4), 10), x2, labels = paste(Neo.Liberal, "%", sep = ""), cex = 1)

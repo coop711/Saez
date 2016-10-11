@@ -34,7 +34,7 @@ kable(data.frame(OECD_shares_2012, OECD_shares_2012[o.top_1, -3], OECD_shares_20
 # png(file = "../pics/OECD_Top_Income_Shares_300dpi_kr.png", width = 1280, height = 747)
 # par(mfrow = c(1, 2))
 par(mfrow = c(1, 2), mai = c(1.0, 1.8, 0.8, 0.4) + 0.2)
-par(family = "HCR Dotum LVT")
+# par(family = "HCR Dotum LVT")
 x1 <- barplot(Top_1_shares[o.top_1], horiz = TRUE, col = "cyan", axes = FALSE, names.arg = Country.kr[o.top_1], xlim = c(0, 25), space = 0.5, las = 1)
 # x1 <- barplot(Top_1_shares[o.top_1], col = "cyan", axes = FALSE, names.arg = Country[o.top_1], xlim = c(0, 25), space = 0.5, las = 1)
 # x1 <- barplot(Top_1_shares, horiz = TRUE, col = "cyan", axes = FALSE, names.arg = Country, xlim = c(0, 25), space = 0.5, las = 1)
