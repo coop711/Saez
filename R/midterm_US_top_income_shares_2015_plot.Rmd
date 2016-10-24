@@ -1,0 +1,167 @@
+#### 2. Plots for US Top Income Shares
+
+다음 plot과 이를 그리는 데 사용된 코드 묶음을 보고 물음에 답하시오.
+
+```{r, no show, echo = FALSE, fig.width = 12, fig.height = 6.75}
+par(family = "AppleGothic")
+plot(P99_100 ~ Year, data = US.top.income.shares.15, xlab = "연도", ylab = "소득점유(%)", xlim = c(1910, 2020), ylim = c(5, 25), xaxt = "n", type = "b", pch = 17)
+axis(side = 1, at = seq(1910, 2020, by = 10), labels = seq(1910, 2020, by = 10))
+lines(P95_99 ~ Year, data = US.top.income.shares.15, type = "b", pch = 17, col = "red")
+lines(P90_95 ~ Year, data = US.top.income.shares.15, type = "b", pch = 17, col = "blue")
+abline(h = seq(5, 25, by = 5), lty = 3)
+abline(v = seq(1910, 2020, by = 10), lty = 3)
+legend.text <- c("99-100%:$423,090 이상(2015년 기준)", "95-99%:$174,240-$423,090", "90-95%:$121,360-$174,240")
+legend(x = 1945, y = 25, legend = legend.text, pch = 17, col = c("black", "red", "blue"))
+main.title <- "미국 소득 상위 10%의 점유율 분할"
+title(main = main.title)
+y.1928 <- US.top.income.shares.15$P99_100[US.top.income.shares.15$Year == 1928]
+y.2007 <- US.top.income.shares.15$P99_100[US.top.income.shares.15$Year == 2007]
+text(x = c(1928, 2007), y = c(y.1928, y.2007), labels = c(1928, 2007), pos = 3)
+times.label <- c("대공황", "대번영", "대침체")
+text(x = c(1935, 1960, 2015), y = c(22, 8, 18), label = times.label, cex = 1.5, col = "red")
+```
+
+```{r, show, echo = TRUE, fig.width = 12, fig.height = 6.75, fig.keep = "none"}
+par(family = "AppleGothic")
+plot(P99_100 ~ Year, data = US.top.income.shares.15, xlab = "연도", ylab = "소득점유(%)", xlim = c(1910, 2020), ylim = c(5, 25), xaxt = "n", type = "b", pch = 17)
+axis(side = 1, at = seq(1910, 2020, by = 10), labels = seq(1910, 2020, by = 10))
+lines(P95_99 ~ Year, data = US.top.income.shares.15, type = "b", pch = 17, col = "red")
+lines(P90_95 ~ Year, data = US.top.income.shares.15, type = "b", pch = 17, col = "blue")
+abline(h = seq(5, 25, by = 5), lty = 3)
+abline(v = seq(1910, 2020, by = 10), lty = 3)
+legend.text <- c("99-100%:$423,090 이상(2015년 기준)", "95-99%:$174,240-$423,090", "90-95%:$121,360-$174,240")
+legend(x = 1945, y = 25, legend = legend.text, pch = 17, col = c("black", "red", "blue"))
+main.title <- "미국 소득 상위 10%의 점유율 분할"
+title(main = main.title)
+y.1928 <- US.top.income.shares.15$P99_100[US.top.income.shares.15$Year == 1928]
+y.2007 <- US.top.income.shares.15$P99_100[US.top.income.shares.15$Year == 2007]
+text(x = c(1928, 2007), y = c(y.1928, y.2007), labels = c(1928, 2007), pos = 3)
+times.label <- c("대공황", "대번영", "대침체")
+text(x = c(1935, 1960, 2015), y = c(22, 8, 18), label = times.label, cex = 1.5, col = "red")
+```
+
+##### 2.1
+
+다음 코드를 수행하였을 때 나오는 x-축의 라벨과 y-축의 라벨을 제대로 짝지은 것은?
+
+```
+plot(P99_100 ~ Year, data = US.top.income.shares.15)
+```
+
+가. `Year`, `P99_100`
+
+나. `P99_100`, `Year`
+
+다. `US.top.income.shares.15$Year`, `US.top.income.shares.15$P99_100`
+
+라. `US.top.income.shares.15$P99_100`, `US.top.income.shares.15$Year`
+
+##### 2.2
+
+위의 코드 묶음에서 점과 선을 동시에 표현하는 데 사용된 코드는 무엇인가?
+
+가. `xlim = c(1910, 2020)`
+
+나. `ylim = c(5, 25)`
+
+다. `type = "b"`
+
+라. `pch = 17`
+
+##### 2.3
+
+위의 코드 묶음에서 y축의 범위를 정하는 데 사용된 코드는 무엇인가?
+
+가. `xlim = c(1910, 2020)`
+
+나. `ylim = c(5, 25)`
+
+다. `type = "b"`
+
+라. `pch = 17`
+
+##### 2.4
+
+위의 코드 묶음에서 격자 점선의 종류를 정하는 데 사용된 코드는 무엇인가?
+
+가. `h = seq(5, 25, by = 5)`
+
+나. `v = seq(1910, 2020, by = 10)`
+
+다. `lty = 3`
+
+라. `pch = 17`
+
+##### 2.5
+
+범례의 위치를 정하는 데 사용된 좌표는 범례 박스의 어느 부분인가?
+
+가. 왼쪽 위
+
+나. 오른쪽 위
+
+다. 왼쪽 아래
+
+라. 오른쪽 아래
+
+##### 2.6
+
+메인 타이틀의 크기를 현재보다 두배로 하려면 어떤 코드를 추가하여야 하는가?
+
+가. `cex = 2.0`
+
+나. `cex.main = 2.0`
+
+다. `main.cex = 2.0`
+
+라. `main = 2.0`
+
+##### 2.7 
+
+1928년도의 상위 1%의 소득점유율(%)을 출력하는 코드는 다음 중 무엇인가?
+
+가. `y.1928 <- US.top.income.shares.15$P99_100[US.top.income.shares.15$Year == 1928]`
+
+나. `y.2007 <- US.top.income.shares.15$P99_100[US.top.income.shares.15$Year == 2007]`
+
+다. `US.top.income.shares.15$P99_100[US.top.income.shares.15$Year == 1928]`
+
+라. `US.top.income.shares.15$P99_100[US.top.income.shares.15$Year == 2007]`
+
+##### 2.8 
+
+`1928`과 `2007`의 위치를 정하는 데 사용된 코드는 무엇인가?
+
+가. `x = c(1928, 2007)`
+
+나. `y = c(y.1928, y.2007)`, 
+
+다. `labels = c(1928, 2007)`
+
+라. `pos = 3`
+
+##### 2.9 
+
+`대번영`의 좌표는 다음 중 어느 것인가?
+
+가. `x = 1935, y = 22`
+
+나. `x = 1960, y = 8`
+
+다. `x = 2015, y = 18`
+
+라. `x = 1960, y = 18`
+
+##### 2.10
+
+윈도우용 R을 사용한다면 굳이 설정하지 않아도 되는 코드는 다음 중 어느 것인가?
+
+가. `par(family = "AppleGothic")`
+
+나. `axis(side = 1, at = seq(1910, 2020, by = 10), labels = seq(1910, 2020, by = 10))`
+
+다. `abline(h = seq(5, 25, by = 5), lty = 3)`
+
+라. `title(main = main.title)`
+
+<P style = "page-break-before:always">
