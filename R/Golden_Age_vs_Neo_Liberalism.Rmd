@@ -14,12 +14,10 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r, data, echo = FALSE}
 library(knitr)
 Fifth <- factor(5:1, levels = 5:1, labels = paste(c("Top", "Fourth", "Third", "Second", "Bottom"), "Fifth"))
-# Golden.Age <- rev(c(122, 101, 113, 115, 99))
 Golden.Age <- c(99, 115, 113, 101, 122)
-# Neo.Liberal <- rev(c(-4, 7, 15, 25, 55))
 Neo.Liberal <- c(55, 25, 15, 7, -4)
 Income.Gains.df <- data.frame(Fifth, Golden.Age, Neo.Liberal)
-str(Income.Gains.df)
+# str(Income.Gains.df)
 kable(Income.Gains.df)
 ```
 
@@ -39,35 +37,37 @@ title.2 <- "Neo Liberalism\n1980 ~ 2009"
 title(main = title.2, cex.main = 2.0)
 abline(v = 0, lwd = 5)
 text(Neo.Liberal + c(rep(5, 4), 10), x2, labels = paste(Neo.Liberal, "%", sep = ""), cex = 1)
+# dev.copy(png, "../pics/income_increase_by_times.png", width = 960, height = 480)
 ```
 
 ## 한글화
 
 ```{r, data in kr, echo = FALSE}
 Fifth.kr <- factor(5:1, levels = 5:1, labels = paste(5:1, "분위"))
-Golden.Age <- c(99, 115, 113, 101, 122)
-Neo.Liberal <- c(55, 25, 15, 7, -4)
+# Golden.Age <- c(99, 115, 113, 101, 122)
+# Neo.Liberal <- c(55, 25, 15, 7, -4)
 Income.Gains.df.kr <- data.frame(Fifth.kr, Golden.Age, Neo.Liberal)
-str(Income.Gains.df.kr)
+# str(Income.Gains.df.kr)
 kable(Income.Gains.df.kr)
 ```
 
 ## Bar Plots
 
 ```{r, barplots in kr, echo = FALSE, fig.width = 12, fig.height = 6}
-# par(mfrow = c(1, 2), mai = c(1.0, 1.8, 0.8, 0.4) + 0.2, family = "HCR Dotum LVT")
-par(mfrow = c(1, 2), mai = c(1.0, 1.8, 0.8, 0.4) + 0.2)
+par(mfrow = c(1, 2), mai = c(1.0, 1.8, 0.8, 0.4) + 0.2, family = "HCR Dotum LVT")
+# par(mfrow = c(1, 2), mai = c(1.0, 1.8, 0.8, 0.4) + 0.2)
 x1.kr <- barplot(Golden.Age, horiz = TRUE, col = "tan", axes = FALSE, names.arg = "", xlim = c(0, 130), space = 0.5, las = 1, axisnames = TRUE)
-title.1 <- "1947 ~ 1979"
+title.1 <- "황금기\n1947 ~ 1979"
 title(main = title.1, cex.main = 2.0)
 abline(v = 0, lwd = 5)
 text(5, x1.kr, labels = Fifth.kr, cex = 1, adj = 0)
 text(Golden.Age - 10, x1, labels = paste(Golden.Age, "%", sep =""), cex = 1)
 x2.kr <- barplot(Neo.Liberal, horiz = TRUE, col = "cadetblue", axes = FALSE, names.arg = Fifth.kr, xlim = c(0, 80), space = 0.5, las = 1, axisnames = TRUE)
-title.2 <- "1980 ~ 2009"
+title.2 <- "신자유주의시기\n1980 ~ 2009"
 title(main = title.2, cex.main = 2.0)
 abline(v = 0, lwd = 5)
 text(Neo.Liberal + c(rep(5, 4), 10), x2.kr, labels = paste(Neo.Liberal, "%", sep = ""), cex = 1)
+# dev.copy(png, "../pics/income_increase_by_times_kr.png", width = 960, height = 480)
 ```
 
 

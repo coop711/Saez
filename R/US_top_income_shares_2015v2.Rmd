@@ -11,13 +11,7 @@ output: html_document
 
 ```{r, data preparation, message = FALSE, echo = FALSE, results = 'hide'}
 options(digits = 2)
-# library(xlsx)
-load("US_top_income_shares_2015.rda")
-# US.top.income.shares.15 <- read.xlsx("../data/TabFig2015prel.xlsx", sheetIndex = 9, sheetName = "Table A3", startRow = 6, endRow = 107, colIndex = c(1:7, 9:13), header = FALSE)
-# v.names <- read.xlsx("./data/TabFig2015prel.xlsx", sheetName = "Table A3", startRow = 4, endRow = 4, colIndex = c(2:7, 9:15), colClasses = character, header = FALSE)
-#str(US.top.income.shares.15)
-v.names <- c("Year", "P90_100", "P95_100", "P99_100", "P99.5_100", "P99.9_100", "P99.99_100", "P90_95", "P95_99", "P99_99.5", "P99.5_99.9", "P99.9_99.99")
-names(US.top.income.shares.15) <- v.names
+load("US_top_income_shares_2015.RData")
 ls()
 ```
 
@@ -35,7 +29,7 @@ kable(US.top.income.shares.15)
 plot(P99_100 ~ Year, data = US.top.income.shares.15)
 ```
 
-최소한의 정보를 주기 위하여 각 자료의 최대값, 최소값을 고려하여 y-축의 범위를 `ylim=c(5,25)`로 설정하고, x-축의 눈금은 비워둔다. 점들을 선으로 이어주고, 점은 다시 삼각형 모양으로 바꾼다.
+최소한의 정보를 주기 위하여 각 자료의 최대값, 최소값을 고려하여 y-축의 범위를 `ylim = c(5, 25)`로 설정하고, x-축의 눈금은 비워둔다. 점들을 선으로 이어주고, 점은 다시 삼각형 모양으로 바꾼다.
 
 ```{r, set ylim, fig.width = 12, fig.height = 6.75}
 plot(P99_100 ~ Year, data = US.top.income.shares.15, xlab = "연도", ylab = "소득점유(%)", ylim = c(5, 25), xaxt = "n", type = "b", pch = 17)
