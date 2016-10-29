@@ -1,5 +1,5 @@
 ---
-title: "US Top Income Share vs Tax Rates (1913 ~ 2015)"
+title: "US Top Income Share vs Tax Rates (1913 ~ 2015) - Data"
 author: "coop711"
 date: "`r Sys.Date()`"
 output: html_document
