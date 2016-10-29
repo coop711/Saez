@@ -42,6 +42,8 @@ text(x = 1960, y = 15, labels = "상위 1% 소득점유율", cex = 1.2)
 # dev.off()
 ``` 
 
+<P style = "page-break-before:always"/>
+
 상위 1%의 소득 증가폭과 하위 99%의 소득 증가폭(자본이득 제외)을 최고세율의 변화와 함께 비교
 
 ```{r, top 1 and bottom 99 vs MTR, echo = FALSE, fig.width = 12, fig.height = 6.75}
