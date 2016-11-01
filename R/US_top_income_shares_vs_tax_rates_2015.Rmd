@@ -11,9 +11,7 @@ output: html_document
 
 ```{r, data preparation, message = FALSE, echo = FALSE, results = 'hide'}
 options(digits = 2)
-library(xlsx)
 library(knitr)
-load("US_top_income_shares_2015_add.rda")
 load("US_top_income_shares_vs_tax_rates_2015.rda")
 # str(US.top.income.shares.15)
 # kable(cbind(top.income_tax, Rate_99 = Rate_99, Rate_1 = Rate_1, Rate_99_K = Rate_99_K, Rate_1_K = Rate_1_K))
