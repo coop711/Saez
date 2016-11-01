@@ -11,10 +11,8 @@ output: html_document
 
 ```{r, data preparation, message = FALSE, echo = FALSE, results = 'hide'}
 options(digits = 2)
-# library(xlsx)
 library(knitr)
-load("US_top_income_shares_2015_add.rda")
-load("US_top_income_shares_vs_tax_rates_2015.rda")
+load("US_top_income_shares_vs_tax_rates_2015.RData")
 # str(US.top.income.shares.15)
 # kable(cbind(top.income_tax, Rate_99 = Rate_99, Rate_1 = Rate_1, Rate_99_K = Rate_99_K, Rate_1_K = Rate_1_K))
 ```
@@ -99,6 +97,6 @@ text(x = 1955, y = 95, labels = "최고 한계세율", cex = 1.2)
 <!--## 뒷 정리
 
 ```{r, save.image}
-# save.image(file = "US_top_income_shares_vs_tax_rates_2015.rda")
+# save.image(file = "US_top_income_shares_vs_tax_rates_2015.RData")
 ```
 -->
