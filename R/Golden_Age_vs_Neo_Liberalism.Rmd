@@ -55,7 +55,7 @@ kable(Income.Gains.df.kr)
 ## Bar Plots
 
 ```{r, barplots in kr, echo = FALSE, fig.width = 12, fig.height = 6}
-# par(mfrow = c(1, 2), mai = c(1.0, 1.8, 0.8, 0.4) + 0.2, family = "HCR Dotum LVT")
+par(mfrow = c(1, 2), mai = c(1.0, 1.8, 0.8, 0.4) + 0.2, family = "HCR Dotum LVT")
 par(mfrow = c(1, 2), mai = c(1.0, 1.8, 0.8, 0.4) + 0.2)
 x1.kr <- barplot(Golden.Age, horiz = TRUE, col = "tan", axes = FALSE, names.arg = "", xlim = c(0, 130), space = 0.5, las = 1, axisnames = TRUE)
 title.1.kr <- "황금기\n1947 ~ 1979"

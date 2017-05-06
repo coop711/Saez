@@ -1,0 +1,111 @@
+---
+title: "Qualifying Exam"
+author: "Applied Statistics"
+date: ""
+output: html_document
+---
+
+```{r, setup , include = FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+Explain the relationship between the plots and the codes as detailed as possible. 
+What can you infer from the plots?
+
+## 1. US Top Income Shares
+
+```{r, data preparation, echo = FALSE, message = FALSE, results = 'hide'}
+options(digits = 3)
+load("US_top_income_shares_2015_add.rda")
+```
+
+```{r, data structure, echo = FALSE, results = 'hide'}
+library(knitr)
+```
+
+### 1.1 Top 10%
+
+```{r, top 10, echo = TRUE, message = FALSE, warning = FALSE, fig.width = 12, fig.height = 6.75}
+x.lab <- "Year"
+y.lab <- "Income Shares (%)"
+plot(P90_100 ~ Year, data = US.top.income.shares.15, xlab = x.lab, ylab = y.lab, xlim = c(1910, 2020), ylim = c(30, 52), xaxt = "n", type = "b", pch = 17)
+axis(side = 1, at = seq(1910, 2020, by = 10), labels = seq(1910, 2020, by = 10))
+abline(h = seq(30, 50, by = 5), lty = 3)
+abline(v = seq(1910, 2020, by = 10), lty = 3)
+main.title<- "Top 10% US Income Share (1917 ~ 2015)"
+title(main = main.title)
+text(x = c(1927.5, 2007, 2012.5), y = c(50, 50, 51), labels = c("1928", "2007", "2012"), pos = 3)
+times.label <- c("The Great\nDepression", "The Great\nProsperity", "The Great\nRecession")
+text(x = c(1935, 1965, 2015), y = c(48.5, 32, 46.5), label = times.label, cex = 1.0, col = "red")
+```
+
+<P style="page-break-before:always">
+
+### 1.2 Top 10% Decomposition
+
+```{r, partition top 10, echo = TRUE, message = FALSE, warning = FALSE, fig.width = 12, fig.height = 6.75}
+x.lab <- "Year"
+y.lab <- "Income Shares (%)"
+plot(P99_100 ~ Year, data = US.top.income.shares.15, xlab = x.lab, ylab = y.lab, xlim = c(1910, 2020), ylim = c(5, 25), xaxt = "n", type = "b", pch = 17)
+axis(side = 1, at = seq(1910, 2020, by = 10), labels = seq(1910, 2020, by = 10))
+lines(P95_99 ~ Year, data = US.top.income.shares.15, type = "b", pch = 17, col = "red")
+lines(P90_95 ~ Year, data = US.top.income.shares.15, type = "b", pch = 17, col = "blue")
+abline(h = seq(5, 25, by = 5), lty = 3)
+abline(v = seq(1910, 2020, by = 10), lty = 3)
+legend.text.1 <- c("Top 1% (incomes above $423,090 in 2015)", "Top 5-1% (incomes between $174,240 and $423,090)", "Top 10-5% (incomes between $121,360 and $174,240)")
+legend(x = 1940, y = 25, legend = legend.text.1, pch = 17, col = c("black", "red", "blue"))
+main.title.1 <- "Decomposing the Top 10% US Income Share (1913 ~ 2015)"
+title(main = main.title.1)
+text(x = c(1924, 2007), y = c(23.5, 23.5), labels = c("1928", "2007"), pos = 3)
+times.label <- c("The Great\nDepression", "The Great\nProsperity", "The Great\nRecession")
+text(x = c(1935, 1965, 2015), y = c(22, 8, 18), label = times.label, cex = 1.0, col = "red")
+```
+
+<P style="page-break-before:always">
+
+## 2. US Marginal Tax Rates
+
+```{r, message = FALSE, echo = FALSE, results = 'hide'}
+load("US_top_income_shares_vs_tax_rates_2015.RData")
+```
+
+### 2.1 Top 1% Income Shares vs Marginal Tax Rates
+
+```{r, top 1 percent shares vs MTR, echo = TRUE, fig.width = 12, fig.height = 6.75}
+par(mar = c(5, 6, 4, 6) + 0.1)
+plot(P99_100 ~ Year, data = top.income_tax, type = "b", pch = 17, axes = FALSE, ann = FALSE, xlim = c(1910, 2020), ylim = c(5, 25))
+box()
+axis(side = 1, at = seq(1910, 2020, by = 10), labels = seq(1910, 2020, by = 10))
+axis(side = 2, at = seq(5, 25, by = 5), labels = seq(5, 25, by = 5), las = 1, ylab = "Top Income Share")
+mtext("Top Income Share(%)", side = 2, line = 3)
+par(new = TRUE)
+plot(Marginal ~ Year, data = top.income_tax, type ="l", lty = 2, lwd = 2, col = "red", axes = FALSE, ann = FALSE, xlim = c(1910, 2020), ylim = c(0, 100))
+axis(side = 4, at = seq(0, 100, by = 20), labels = seq(0, 100, by = 20), las = 1)
+mtext("Marginal Tax Rates(%)", side = 4, line = 3)
+title(main = "Top 1% Income Share and Top Marginal Tax Rate", xlab = "Year")
+text(x = 1980, y = 75, labels = "Top Marginal Tax Rates", cex = 1.2)
+text(x = 1960, y = 15, labels = "Top 1% Income Shares", cex = 1.2)
+``` 
+
+<P style="page-break-before:always">
+
+### 2.2 Rates of Income Increases vs Marginal Tax Rates
+
+```{r, top 1 and bottom 99 vs MTR, echo = TRUE, fig.width = 12, fig.height = 6.75}
+par(mar = c(5, 6, 4, 6) + 0.1)
+plot(Rate_99 ~ Year, data = top.income_tax, type = "b", pch = 24, col = "black", bg = "black", axes = FALSE, ann = FALSE, xlim = c(1910, 2020), ylim = c(0, 400))
+lines(Rate_1 ~ Year, data = top.income_tax, type = "b", pch = 24, col = "black", bg = "white")
+box()
+axis(side = 1, at = seq(1910, 2020, by = 10), labels = seq(1910, 2020, by = 10))
+axis(side = 2, at = seq(0, 400, by = 100), labels = seq(0, 400, by = 100), las = 1)
+ylab.2 <- "Average Income (1913 = 100)"
+mtext(ylab.2, side = 2, line = 3)
+par(new = TRUE)
+plot(Marginal ~ Year, data = top.income_tax, type ="l", lty = 2, col = "red", lwd = 2, axes = FALSE, ann = FALSE, xlim = c(1910, 2020), ylim = c(0, 100))
+axis(side = 4, at = seq(0, 100, by = 20), labels = seq(0, 100, by = 20), las = 1)
+ylab.4 <- "Marginal Tax Rates(%)"
+mtext(ylab.4, side = 4, line = 3)
+title(main = "Top 1% and Bottom 99% Income Growth\n(Excluding Capital Gains)", xlab = "Year")
+legend("bottom", legend = c("Bottom 99%", "Top 1%"), pch = 24, col = "black", pt.bg = c("black", "white"), inset = 0.05)
+text(x = 1925, y = 82, labels = "Top Marginal Tax Rates", cex = 1.2)
+```
