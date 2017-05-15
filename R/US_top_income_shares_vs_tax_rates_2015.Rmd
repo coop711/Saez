@@ -42,8 +42,8 @@ text(x = 1960, y = 15, labels = "Top 1% Income Shares", cex = 1.2)
 상위 1%의 소득 증가폭과 하위 99%의 소득 증가폭(자본소득 제외)을 최고세율의 변화와 함께 비교
 
 ```{r, top 1 and bottom 99 vs MTR, echo = FALSE, fig.width = 12, fig.height = 6.75}
-# png(file = "../pics/US_Top_Income_Share_vs_MTR_72dpi_en.png", width = 864, height = 486)
-# png(file = "../pics/US_Top_Income_Share_vs_MTR_300dpi_en.png", width = 1280, height = 720)
+# png(file = "../pics/US_Top_Income_Growth_vs_MTR_72dpi_en.png", width = 864, height = 486)
+# png(file = "../pics/US_Top_Income_Growth_vs_MTR_300dpi_en.png", width = 1280, height = 720)
 par(mar = c(5, 6, 4, 6) + 0.1)
 plot(Rate_99 ~ Year, data = top.income_tax, type = "b", pch = 24, col = "black", bg = "black", axes = FALSE, ann = FALSE, xlim = c(1910, 2020), ylim = c(0, 400))
 lines(Rate_1 ~ Year, data = top.income_tax, type = "b", pch = 24, col = "black", bg = "white")
