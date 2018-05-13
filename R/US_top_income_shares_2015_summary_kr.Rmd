@@ -35,7 +35,7 @@ kable(US.top.income.shares.15[c(11:20, 41:51, 92:103), ])
 소득 상위 10%(`P90_100`)의 소득점유율 변화
 
 ```{r, top 10, echo = FALSE, message = FALSE, warning = FALSE, fig.width = 12, fig.height = 6.75}
-png(file = "../pics/US_top_income_share_10_2015_72dpi_kr.png", width = 864, height = 486)
+# png(file = "../pics/US_top_income_share_10_2015_72dpi_kr.png", width = 864, height = 486)
 # png(file = "../pics/US_top_income_share_10_2015_300dpi_kr.png", width = 1280, height = 720)
 par(family = "HCR Dotum LVT")
 x.lab <- "연도"
@@ -62,7 +62,7 @@ dev.off()
 소득 상위 10%(`P90_100`)를 상위 1%(`P99_100`), 차상위 4%(`P95_99`), 차차상위 5%(`P90_95`)로 분할
 
 ```{r, partition top 10, echo = FALSE, message = FALSE, warning = FALSE, fig.width = 12, fig.height = 6.75}
-png(file = "../pics/US_top_income_share_1-4-5_2015_72dpi_kr.png", width = 864, height = 486)
+# png(file = "../pics/US_top_income_share_1-4-5_2015_72dpi_kr.png", width = 864, height = 486)
 # png(file = "../pics/US_top_income_share_1-4-5_2015_300dpi_kr.png", width = 1280, height = 720)
 par(family = "HCR Dotum LVT")
 plot(P99_100 ~ Year, data = US.top.income.shares.15, xlab = x.lab, ylab = y.lab, xlim = c(1910, 2020), ylim = c(5, 25), xaxt = "n", type = "b", pch = 17)
@@ -78,7 +78,7 @@ title(main = main.title.1)
 text(x = c(1924, 2007), y = c(23.5, 23.5), labels = c("1928", "2007"), pos = 3)
 text(x = c(1935, 1965, 2015), y = c(22, 8, 18), label = times.label, cex = 1.5, col = "red")
 # dev.copy(png, file = "../pics/US_top_income_share_1-4-5_2015_kr.png", width = 960, height = 540)
-dev.off()
+# dev.off()
 ```
 
 <P style="page-break-before:always">
@@ -88,7 +88,7 @@ dev.off()
 소득 상위 1%(`P99_100`)를 상위 0.1%(`P99.9_100`), 차상위 0.4%(`P99.5_99.9`), 차차상위 0.5%(`P99_99.5`)로 분할
 
 ```{r, partiotion top 1, echo = FALSE, message = FALSE, warning = FALSE, fig.width = 12, fig.height = 6.75}
-png(file = "../pics/US_top_income_share_0.1-0.4-0.5_2015_72dpi_kr.png", width = 864, height = 486)
+# png(file = "../pics/US_top_income_share_0.1-0.4-0.5_2015_72dpi_kr.png", width = 864, height = 486)
 # png(file = "../pics/US_top_income_share_0.1-0.4-0.5_2015_300dpi_kr.png", width = 1280, height = 720)
 par(family = "HCR Dotum LVT")
 plot(P99.9_100 ~ Year, data = US.top.income.shares.15, xlab = x.lab, ylab = y.lab, xlim = c(1910, 2020), ylim = c(0, 13), xaxt = "n", yaxt = "n", type = "b", pch = 17)
@@ -105,7 +105,7 @@ title(main = main.title.2)
 text(x = c(1924, 2007), y = c(11, 12.5), labels = c("1928", "2007"), pos = 3)
 text(x = c(1935, 1965, 2015), y = c(10, 2, 8), label = times.label, cex = 1.5, col = "red")
 # dev.copy(png, file = "../pics/US_top_income_share_0.1-0.4-0.5_2015_kr.png", width = 960, height = 540)
-dev.off()
+# dev.off()
 ```
 
 ### Top 0.1% 분할
@@ -113,7 +113,7 @@ dev.off()
 소득 상위 0.1%(`P99.9_100`)를 상위 0.01%(`P99.99_100`)와 다음 0.09%(`P99_9.99.99`)로 분할
 
 ```{r, partition top 1 0.01 vs 0.99, echo = FALSE, message = FALSE, warning = FALSE, fig.width = 12, fig.height = 6.75}
-png(file = "../pics/US_top_income_share_0.01-0.09_2015_72dpi_kr.png", width = 864, height = 486)
+# png(file = "../pics/US_top_income_share_0.01-0.09_2015_72dpi_kr.png", width = 864, height = 486)
 # png(file = "../pics/US_top_income_share_0.01-0.09_2015_300dpi_kr.png", width = 1280, height = 720)
 par(family = "HCR Dotum LVT")
 plot(P99.99_100 ~ Year, data = US.top.income.shares.15, xlab = x.lab, ylab = y.lab, xlim = c(1910, 2020), ylim = c(0, 7), xaxt = "n", type = "b", pch = 17)
@@ -128,7 +128,7 @@ title(main = main.title.3)
 text(x = c(1924, 2007), y = c(6.3, 6.3), labels = c("1928", "2007"), pos = 3)
 text(x = c(1935, 1965, 2015), y = c(5.6, 0.5, 3.4), label = times.label, cex = 1.5, col = "red")
 # dev.copy(png, file = "../pics/US_top_income_share_0.01-0.09_2015_kr.png", width = 960, height = 540)
-dev.off()
+# dev.off()
 ```
 
 <P style="page-break-before:always">
