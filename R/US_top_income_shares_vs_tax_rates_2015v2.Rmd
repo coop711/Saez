@@ -1,0 +1,106 @@
+---
+title: "US Top Income Share vs Tax Rates (1913 ~ 2015)"
+author: "coop711"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+## Data Preparation
+
+준비한 자료는  [E. Saez 교수의 홈페이지](http://elsa.berkeley.edu/~saez/)에 있는 `TabFig2015prel.xls` 와 [Tax Foundation](http://taxfoundation.org/)에서 제공하는 자료를 손봐서 불러들인 것이다. 
+
+```{r, data preparation, message = FALSE, echo = FALSE, results = 'hide'}
+options(digits = 2)
+library(knitr)
+load("US_top_income_shares_vs_tax_rates_2015.RData")
+# str(US.top.income.shares.15)
+# kable(cbind(top.income_tax, Rate_99 = Rate_99, Rate_1 = Rate_1, Rate_99_K = Rate_99_K, Rate_1_K = Rate_1_K))
+z <- function(x) {
+  (x - min(x)) / (max(x) - min(x))
+}
+top.income_tax$P99_100_z <- z(top.income_tax$P99_100)
+top.income_tax$Marginal_z <- z(top.income_tax$Marginal)
+Rate_99_z <- z(Rate_99)
+Rate_1_z <- z(Rate_1)
+Rate_99_K_z <- z(Rate_99_K)
+Rate_1_K_z <- z(Rate_1_K)
+```
+
+이 중에서 소득 상위 1%(`P99_100`)몫과 최고세율(Marginal Tax Rates) 간의 관계를 살펴보자
+
+```{r, top 1 percent shares vs MTR, echo = FALSE, fig.width = 12, fig.height = 6.75}
+# png(file = "../pics/US_Top_Income_Share_vs_MTR_72dpi_en.png", width = 864, height = 486)
+# png(file = "../pics/US_Top_Income_Share_vs_MTR_300dpi_en.png", width = 1280, height = 720)
+par(mar = c(5, 6, 4, 6) + 0.1)
+plot(P99_100_z ~ Year, data = top.income_tax, type = "b", pch = 17, axes = FALSE, ann = FALSE, xlim = c(1910, 2020), ylim = c(0, 1))
+box()
+axis(side = 1, at = seq(1910, 2020, by = 10), labels = seq(1910, 2020, by = 10))
+axis(side = 2, at = seq(0, 1, by = 0.25), labels = seq(5, 25, by = 5), las = 1, ylab = "Top Income Share")
+mtext("Top Income Share(%)", side = 2, line = 3)
+# par(new = TRUE)
+lines(Marginal_z ~ Year, data = top.income_tax, type = "l", lty = 2, lwd = 2, col = "red", xlim = c(1910, 2020), ylim = c(0, 1))
+axis(side = 4, at = seq(0, 1, by = 0.2), labels = seq(0, 100, by = 20), las = 1)
+mtext("Marginal Tax Rates(%)", side = 4, line = 3)
+title(main = "Top 1% Income Share and Top Marginal Tax Rate", xlab = "Year")
+text(x = 1980, y = 0.8, labels = "Top Marginal Tax Rates", cex = 1.2)
+text(x = 1960, y = 0.35, labels = "Top 1% Income Shares", cex = 1.2)
+# dev.copy(png, file ="../pics/US_Top_Income_Share_vs_MTR_en.png", width = 960, height = 540)
+# dev.off()
+``` 
+
+상위 1%의 소득 증가폭과 하위 99%의 소득 증가폭(자본소득 제외)을 최고세율의 변화와 함께 비교
+
+```{r, top 1 and bottom 99 vs MTR, echo = FALSE, fig.width = 12, fig.height = 6.75}
+# png(file = "../pics/US_Top_Income_Growth_vs_MTR_72dpi_en.png", width = 864, height = 486)
+# png(file = "../pics/US_Top_Income_Growth_vs_MTR_300dpi_en.png", width = 1280, height = 720)
+par(mar = c(5, 6, 4, 6) + 0.1)
+plot(Rate_99_z ~ Year, data = top.income_tax, type = "b", pch = 24, col = "black", bg = "black", axes = FALSE, ann = FALSE, xlim = c(1910, 2020), ylim = c(0, 1))
+lines(Rate_1_z ~ Year, data = top.income_tax, type = "b", pch = 24, col = "black", bg = "white")
+box()
+axis(side = 1, at = seq(1910, 2020, by = 10), labels = seq(1910, 2020, by = 10))
+axis(side = 2, at = seq(0, 1, by = 0.25), labels = seq(0, 400, by = 100), las = 1)
+ylab.2 <- "Average Income (1913 = 100)"
+mtext(ylab.2, side = 2, line = 3)
+# mtext(ylab.2, side = 2)
+# par(new = TRUE)
+lines(Marginal_z ~ Year, data = top.income_tax, type ="l", lty = 2, col = "red", lwd = 2, xlim = c(1910, 2020), ylim = c(0, 1))
+axis(side = 4, at = seq(0, 1, by = 0.2), labels = seq(0, 100, by = 20), las = 1)
+ylab.4 <- "Marginal Tax Rates(%)"
+mtext(ylab.4, side = 4, line = 3)
+title(main = "Top 1% and Bottom 99% Income Growth\n(Excluding Capital Gains)", xlab = "Year")
+legend("bottomright", legend = c("Bottom 99%", "Top 1%"), pch = 24, col = "black", pt.bg = c("black", "white"), inset = 0.05)
+# legend("bottom", legend = c("Bottom 99%", "Top 1%"), pch = 24, col = "black", pt.bg = c("black", "white"))
+text(x = 1925, y = 0.9, labels = "Top Marginal Tax Rates", cex = 1.2)
+# dev.copy(png, file ="../pics/US_Income_Growth_vs_MTR_en.png", width = 960, height = 540)
+# dev.off()
+```
+
+상위 1%의 소득 증가폭과 하위 99%의 소득 증가폭(자본소득 포함)을 최고세율의 변화와 함께 비교
+
+```{r, top 1 and bottom 99 vs MTR with K, echo = FALSE, fig.width = 12, fig.height = 6.75}
+# png(file = "../pics/US_Income_Growth_vs_MTR_72dpi_K.png", width = 864, height = 486)
+# png(file = "../pics/US_Income_Growth_vs_MTR_300dpi_K.png", width = 1280, height = 720)
+par(mar = c(5, 6, 4, 6) + 0.1)
+plot(Rate_99_K_z ~ Year, data = top.income_tax, type = "b", pch = 24, col = "black", bg = "black", axes = FALSE, ann = FALSE, xlim = c(1910, 2020), ylim = c(0, 1))
+lines(Rate_1_K_z ~ Year, data = top.income_tax, type = "b", pch = 24, col = "black", bg = "white")
+box()
+axis(side = 1, at = seq(1910, 2020, by = 10), labels = seq(1910, 2020, by = 10))
+axis(side = 2, at = seq(0, 1, by = 1/6), labels = seq(0, 600, by = 100), las = 1)
+mtext("Average Income (1913 = 100)", side = 2, line = 3)
+# par(new = TRUE)
+lines(Marginal_z ~ Year, data = top.income_tax, type ="l", lty = 2, col = "red", lwd = 2, xlim = c(1910, 2020), ylim = c(0, 1))
+axis(side = 4, at = seq(0, 1, by = 0.2), labels = seq(0, 100, by = 20), las = 1)
+mtext("Marginal Tax Rates(%)", side = 4, line = 3)
+title(main = "Top 1% and Bottom 99% Income Growth\n(Including Capital Gains)", xlab = "Year")
+legend("bottomright", legend = c("Bottom 99%", "Top 1%"), pch = 24, col = "black", pt.bg = c("black", "white"), inset = 0.05)
+text(x = 1925, y = 0.9, labels = "Top Marginal Tax Rates", cex = 1.2)
+# dev.copy(png, file ="../pics/US_Income_Growth_vs_MTR_K.png", width = 960, height = 540)
+# dev.off()
+```
+
+<!--## 뒷 정리
+
+```{r, save.image}
+# save.image(file = "US_top_income_shares_vs_tax_rates_2015.RData")
+```
+-->
