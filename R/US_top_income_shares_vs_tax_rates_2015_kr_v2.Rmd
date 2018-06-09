@@ -41,7 +41,8 @@ Rate_1_K_z <- Rate_1_K %>%
 # png(file = "../pics/US_Top_Income_Share_vs_MTR_72dpi_en.png", width = 864, height = 486)
 # png(file = "../pics/US_Top_Income_Share_vs_MTR_300dpi_en.png", width = 1280, height = 720)
 #> 왼쪽, 오른쪽 수직 축의 축 눈금을 수평하게 놓을 수 있도록 공간 조정
-par(mar = c(5, 6, 4, 6) + 0.1)
+par(mar = c(5, 6, 4, 6) + 0.1,
+    family = "HCR Dotum LVT")
 #> 점과 선을 함께 사용하여 소득 상위 1%의 점유율 표시.
 top_income_tax %>%
   plot(P99_100_z ~ Year, data = ., 
@@ -67,6 +68,7 @@ labels1_at <- top_income_tax$P99_100 %>%
 #                     digits = 2, nsmall = 1)
 axis(side = 2, at = y1_at, labels = labels1_at, las = 1)
 #> 왼편 수직축 가장자리에 석 줄을 띠워 놓고 축 이름 표시.
+mtext("상위 1% 소득점유율(%)", side = 2, line = 3)
 mtext("Top Income Share(%)", side = 2, line = 3)
 #> 범위를 0에서 1사이로 변환한 한계소득세율을 도표에 추가.
 top_income_tax %>%
@@ -86,14 +88,14 @@ labels4_at <- top_income_tax$Marginal %>%
 #                     digits = 2, nsmall = 1)
 axis(side = 4, at = y4_at, labels = labels4_at, las = 1)
 #> 오른편 수직축의 이름을 석 줄 띄워 표시.
-mtext("Marginal Tax Rates(%)", side = 4, line = 3)
+mtext("최고 한계세율(%)", side = 4, line = 3)
 #> 메인 타이틀 작성
-title(main = "Top 1% Income Share and Top Marginal Tax Rate", xlab = "Year")
+title(main = "상위 1% 소득점유율과 최고 한계세율", xlab = "연도", cex.main = 1.5)
 #> 어느 선이 어느 변수인지 텍스트로 표시
-text(x = 1980, y = 0.8, labels = "Top Marginal Tax Rates", cex = 1.2)
-text(x = 1960, y = 0.35, labels = "Top 1% Income Shares", cex = 1.2)
+text(x = 1955, y = 95, labels = "최고 한계세율", cex = 1.2)
+text(x = 1960, y = 15, labels = "상위 1% 소득점유율", cex = 1.2)
 #> 외부 그림 파일로 저장.
-# dev.copy(png, file ="../pics/US_Top_Income_Share_vs_MTR_en.png", width = 960, height = 540)
+# dev.copy(png, file ="../pics/US_Top_Income_Share_vs_MTR_kr.png", width = 960, height = 540)
 # dev.off()
 ``` 
 
@@ -102,7 +104,8 @@ text(x = 1960, y = 0.35, labels = "Top 1% Income Shares", cex = 1.2)
 ```{r, echo = FALSE, fig.width = 12, fig.height = 6.75, message = FALSE}
 # png(file = "../pics/US_Top_Income_Share_vs_MTR_72dpi_en.png", width = 864, height = 486)
 # png(file = "../pics/US_Top_Income_Share_vs_MTR_300dpi_en.png", width = 1280, height = 720)
-par(mar = c(5, 6, 4, 6) + 0.1)
+par(mar = c(5, 6, 4, 6) + 0.1,
+    family = "HCR Dotum LVT")
 plot(P99_100_z ~ Year, data = top_income_tax, 
      type = "b", pch = 17, 
      axes = FALSE, ann = FALSE, 
@@ -123,11 +126,11 @@ y4_at <- c(0, z(top_income_tax$Marginal, seq(20, 80, by = 20)), 1)
 labels4_at <- format(c(min(top_income_tax$Marginal), seq(20, 80, by = 20), max(top_income_tax$Marginal)),
                     digits = 2, nsmall = 1)
 axis(side = 4, at = y4_at, labels = labels4_at, las = 1)
-mtext("Marginal Tax Rates(%)", side = 4, line = 3)
-title(main = "Top 1% Income Share and Top Marginal Tax Rate Inverted", xlab = "Year")
-text(x = 1980, y = 0.8, labels = "Top Marginal Tax Rates", cex = 1.2)
-text(x = 1960, y = 0.35, labels = "Top 1% Income Shares", cex = 1.2)
-# dev.copy(png, file ="../pics/US_Top_Income_Share_vs_MTR_en.png", width = 960, height = 540)
+mtext("최고 한계세율(%)", side = 4, line = 3)
+title(main = "상위 1% 소득점유율과 최고 한계세율", xlab = "연도", cex.main = 1.5)
+text(x = 1955, y = 95, labels = "최고 한계세율", cex = 1.2)
+text(x = 1960, y = 15, labels = "상위 1% 소득점유율", cex = 1.2)
+# dev.copy(png, file ="../pics/US_Top_Income_Share_vs_MTR_kr.png", width = 960, height = 540)
 # dev.off()
 ``` 
 
@@ -136,7 +139,8 @@ text(x = 1960, y = 0.35, labels = "Top 1% Income Shares", cex = 1.2)
 ```{r, top 1 and bottom 99 vs MTR, echo = FALSE, fig.width = 12, fig.height = 6.75, message = FALSE}
 # png(file = "../pics/US_Top_Income_Growth_vs_MTR_72dpi_en.png", width = 864, height = 486)
 # png(file = "../pics/US_Top_Income_Growth_vs_MTR_300dpi_en.png", width = 1280, height = 720)
-par(mar = c(5, 6, 4, 6) + 0.1)
+par(mar = c(5, 6, 4, 6) + 0.1,
+    family = "HCR Dotum LVT")
 plot(Rate_99_z ~ Year, data = top_income_tax, type = "b", pch = 24, col = "black", bg = "black", axes = FALSE, ann = FALSE, xlim = c(1910, 2020), ylim = c(0, 1))
 lines(Rate_1_z ~ Year, data = top_income_tax, type = "b", pch = 24, col = "black", bg = "white")
 box()
@@ -145,7 +149,8 @@ y2_at <- c(0, z(Rate_99, c(100, 200, 300)), 1)
 labels2_at <- format(c(min(Rate_99), c(100, 200, 300), max(Rate_99)),
                     digits = 2, nsmall = 1)
 axis(side = 2, at = y2_at, labels = labels2_at, las = 1)
-ylab_2 <- "Average Income (1913 = 100)"
+ylab_2 <- "평균 소득 (1913 = 100)"
+# ylab_2 <- "Average Income (1913 = 100)"
 mtext(ylab_2, side = 2, line = 4)
 # mtext(ylab_2, side = 2)
 # par(new = TRUE)
@@ -154,13 +159,13 @@ y4_at <- c(0, z(top_income_tax$Marginal, seq(20, 80, by = 20)), 1)
 labels4_at <- format(c(min(top_income_tax$Marginal), seq(20, 80, by = 20), max(top_income_tax$Marginal)),
                     digits = 2, nsmall = 1)
 axis(side = 4, at = y4_at, labels = labels4_at, las = 1)
-ylab_4 <- "Marginal Tax Rates(%)"
+ylab_4 <- "최고 한계세율(%)"
 mtext(ylab_4, side = 4, line = 3)
-title(main = "Top 1% and Bottom 99% Income Growth\n(Excluding Capital Gains)", xlab = "Year")
-legend("bottomright", legend = c("Bottom 99%", "Top 1%"), pch = 24, col = "black", pt.bg = c("black", "white"), inset = 0.05)
+title(main = "상위 1%와 하위 99% 소득 증가\n(자본이득 제외)", xlab = "연도", cex.main = 1.5)
+legend("bottomright", legend = c("하위 99%", "상위 1%"), pch = 24, col = "black", pt.bg = c("black", "white"), inset = 0.05)
 # legend("bottom", legend = c("Bottom 99%", "Top 1%"), pch = 24, col = "black", pt.bg = c("black", "white"))
-text(x = 1925, y = 0.9, labels = "Top Marginal Tax Rates", cex = 1.2)
-# dev.copy(png, file ="../pics/US_Income_Growth_vs_MTR_en.png", width = 960, height = 540)
+text(x = 1925, y = 0.9, labels = "최고 한계세율", cex = 1.2)
+# dev.copy(png, file ="../pics/US_Income_Growth_vs_MTR_kr.png", width = 960, height = 540)
 # dev.off()
 ```
 
@@ -169,7 +174,8 @@ text(x = 1925, y = 0.9, labels = "Top Marginal Tax Rates", cex = 1.2)
 ```{r, top 1 and bottom 99 vs MTR with K, echo = FALSE, fig.width = 12, fig.height = 6.75, message = FALSE}
 # png(file = "../pics/US_Income_Growth_vs_MTR_72dpi_K.png", width = 864, height = 486)
 # png(file = "../pics/US_Income_Growth_vs_MTR_300dpi_K.png", width = 1280, height = 720)
-par(mar = c(5, 6, 4, 6) + 0.1)
+par(mar = c(5, 6, 4, 6) + 0.1,
+    family = "HCR Dotum LVT")
 plot(Rate_99_K_z ~ Year, data = top_income_tax, type = "b", pch = 24, col = "black", bg = "black", axes = FALSE, ann = FALSE, xlim = c(1910, 2020), ylim = c(0, 1))
 lines(Rate_1_K_z ~ Year, data = top_income_tax, type = "b", pch = 24, col = "black", bg = "white")
 box()
@@ -178,17 +184,18 @@ y3_at <- c(0, z(Rate_99_K, seq(100, 500, by = 100)), 1)
 labels3_at <- format(c(min(Rate_99_K), seq(100, 500, by = 100), max(Rate_99_K)),
                     digits = 2, nsmall = 1)
 axis(side = 2, at = y3_at, labels = labels3_at, las = 1)
-mtext("Average Income (1913 = 100)", side = 2, line = 4)
+mtext("평균 소득 (1913 = 100)", side = 2, line = 4)
+# mtext("Average Income (1913 = 100)", side = 2, line = 4)
 lines(Marginal_z ~ Year, data = top_income_tax, type ="l", lty = 2, col = "red", lwd = 2, xlim = c(1910, 2020), ylim = c(0, 1))
 y4_at <- c(0, z(top_income_tax$Marginal, seq(20, 80, by = 20)), 1)
 labels4_at <- format(c(min(top_income_tax$Marginal), seq(20, 80, by = 20), max(top_income_tax$Marginal)),
                     digits = 2, nsmall = 1)
 axis(side = 4, at = y4_at, labels = labels4_at, las = 1)
-mtext("Marginal Tax Rates(%)", side = 4, line = 3)
-title(main = "Top 1% and Bottom 99% Income Growth\n(Including Capital Gains)", xlab = "Year")
-legend("bottomright", legend = c("Bottom 99%", "Top 1%"), pch = 24, col = "black", pt.bg = c("black", "white"), inset = 0.05)
-text(x = 1925, y = 0.9, labels = "Top Marginal Tax Rates", cex = 1.2)
-# dev.copy(png, file ="../pics/US_Income_Growth_vs_MTR_K.png", width = 960, height = 540)
+mtext("최고 한계세율(%)", side = 4, line = 3)
+title(main = "상위 1%와 하위 99% 소득 증가\n(자본이득 포함)", xlab = "연도", cex.main = 1.5)
+legend("bottomright", legend = c("하위 99%", "상위 1%"), pch = 24, col = "black", pt.bg = c("black", "white"), inset = 0.05)
+text(x = 1925, y = 0.9, labels = "최고 한계세율", cex = 1.2)
+# dev.copy(png, file ="../pics/US_Income_Growth_vs_MTR_K_kr.png", width = 960, height = 540)
 # dev.off()
 ```
 
