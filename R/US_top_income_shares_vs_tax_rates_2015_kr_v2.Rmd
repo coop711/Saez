@@ -16,23 +16,6 @@ library(knitr)
 library(magrittr)
 #> 데이터 불러 들이기
 load("US_top_income_shares_vs_tax_rates_2015.RData")
-#> 선형변환에 사용할 함수 작성  `q = x`로 하면 변수의 관찰값 전체를 변환. `q`는 그 중 일부의 변환된 값을 보고자 할 때 입력
-z <- function(x, q) {
-  (q - min(x)) / (max(x) - min(x))
-}
-#> 0애서 1사이의 범위로 변환
-top_income_tax$P99_100_z <- top_income_tax$P99_100 %>%
-  z(., .)
-top_income_tax$Marginal_z <- top_income_tax$Marginal %>%
-  z(., .)
-Rate_99_z <- Rate_99 %>%
-  z(., .)
-Rate_1_z <- Rate_1 %>%
-  z(., .)
-Rate_99_K_z <- Rate_99_K %>%
-  z(., .)
-Rate_1_K_z <- Rate_1_K %>%
-  z(., .)
 ```
 
 이 중에서 소득 상위 1%(`P99_100`)몫과 최고세율(Marginal Tax Rates) 간의 관계를 살펴보자
@@ -69,7 +52,6 @@ labels1_at <- top_income_tax$P99_100 %>%
 axis(side = 2, at = y1_at, labels = labels1_at, las = 1)
 #> 왼편 수직축 가장자리에 석 줄을 띠워 놓고 축 이름 표시.
 mtext("상위 1% 소득점유율(%)", side = 2, line = 3)
-mtext("Top Income Share(%)", side = 2, line = 3)
 #> 범위를 0에서 1사이로 변환한 한계소득세율을 도표에 추가.
 top_income_tax %>%
   lines(Marginal_z ~ Year, data = ., 
@@ -116,7 +98,7 @@ y1_at <- c(0, z(top_income_tax$P99_100, c(10, 15, 20)), 1)
 labels1_at <- format(c(min(top_income_tax$P99_100), seq(10, 20, by = 5), max(top_income_tax$P99_100)),
                     digits = 2, nsmall = 1)
 axis(side = 2, at = y1_at, labels = labels1_at, las = 1)
-mtext("Top Income Share(%)", side = 2, line = 3)
+mtext("상위 1% 소득점유율(%)", side = 2, line = 3)
 #> 변환된 한계소득세율을 뒤집는다.
 top_income_tax$M_inv <- 1 - top_income_tax$Marginal_z
 lines(M_inv ~ Year, data = top_income_tax, 
@@ -125,7 +107,7 @@ lines(M_inv ~ Year, data = top_income_tax,
 y4_at <- c(0, z(top_income_tax$Marginal, seq(20, 80, by = 20)), 1)
 labels4_at <- format(c(min(top_income_tax$Marginal), seq(20, 80, by = 20), max(top_income_tax$Marginal)),
                     digits = 2, nsmall = 1)
-axis(side = 4, at = y4_at, labels = labels4_at, las = 1)
+axis(side = 4, at = y4_at, labels = rev(labels4_at), las = 1)
 mtext("최고 한계세율(%)", side = 4, line = 3)
 title(main = "상위 1% 소득점유율과 최고 한계세율", xlab = "연도", cex.main = 1.5)
 text(x = 1955, y = 95, labels = "최고 한계세율", cex = 1.2)

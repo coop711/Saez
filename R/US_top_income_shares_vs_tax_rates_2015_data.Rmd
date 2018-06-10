@@ -13,6 +13,8 @@ output: html_document
 options(digits = 2)
 library(xlsx)
 library(knitr)
+library(reshape2)
+library(magrittr)
 load("US_top_income_shares_2015.RData")
 # load("US_top_income_shares_vs_tax_rates_2015.rda")
 # US_top_income_shares_15 <- read.xlsx("../data/TabFig2015prel.xlsx", sheetIndex = 9, sheetName = "Table A3", startRow = 6, endRow = 108, colIndex = c(1:7, 9:13), header = FALSE)
@@ -32,7 +34,46 @@ Rate_99 <- US_income_averages_15[, "Bottom_99"] / US_income_averages_15[, "Botto
 Rate_1 <- US_income_averages_15[, "Top_1"] / US_income_averages_15[, "Top_1"][1] * 100
 Rate_99_K <- US_income_averages_15[, "Bottom_99_K"] / US_income_averages_15[, "Bottom_99_K"][1] * 100
 Rate_1_K <- US_income_averages_15[, "Top_1_K"] / US_income_averages_15[, "Top_1_K"][1] * 100
+```
+
+선형변환에 사용할 함수 작성  `q = x`로 하면 변수의 관찰값 전체를 변환. `q`는 그 중 일부의 변환된 값을 보고자 할 때 입력
+
+```{r}
+z <- function(x, q) {
+  (q - min(x)) / (max(x) - min(x))
+}
+#> 0애서 1사이의 범위로 변환
+top_income_tax$P99_100_z <- top_income_tax$P99_100 %>%
+  z(., .)
+top_income_tax$Marginal_z <- top_income_tax$Marginal %>%
+  z(., .)
+Rate_99_z <- Rate_99 %>%
+  z(., .)
+Rate_1_z <- Rate_1 %>%
+  z(., .)
+Rate_99_K_z <- Rate_99_K %>%
+  z(., .)
+Rate_1_K_z <- Rate_1_K %>%
+  z(., .)
 kable(cbind(top_income_tax, Rate_99 = Rate_99, Rate_1 = Rate_1, Rate_99_K = Rate_99_K, Rate_1_K = Rate_1_K))
+M_melt <- melt(data.frame(top_income_tax[c("Year", "P99_100_z", "Marginal_z")]),
+       id.vars = "Year", 
+       measure.vars = c("P99_100_z", "Marginal_z"),
+       variable.name = c("Variables"),
+       value.name = "Values")
+str(M_melt)
+Rates_melt <- melt(data.frame(top_income_tax[c("Year", "Marginal_z")], Rate_99_z, Rate_1_z),
+       id.vars = "Year", 
+       measure.vars = c("Marginal_z", "Rate_99_z", "Rate_1_z"),
+       variable.name = c("Variables"),
+       value.name = "Values")
+str(Rates_melt)
+Rates_K_melt <- melt(data.frame(top_income_tax[c("Year", "Marginal_z")], Rate_99_K_z, Rate_1_K_z),
+       id.vars = "Year", 
+       measure.vars = c("Marginal_z", "Rate_99_K_z", "Rate_1_K_z"),
+       variable.name = c("Variables"),
+       value.name = "Values")
+str(Rates_K_melt)
 ```
 
 ## Save
