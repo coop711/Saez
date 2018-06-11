@@ -20,24 +20,24 @@ load("US_top_income_shares_vs_tax_rates_2015_v2.RData")
 source("./theme_kr.R")
 ```
 
-이 중에서 소득 상위 1%(`P99_100`)몫과 최고세율(Marginal Tax Rates) 간의 관계를 살펴보자
+이 중에서 상위 1%의 소득 점유율(`P99_100`)과 한계 소득세율(Marginal Tax Rates) 간의 관계를 살펴보자
 
 ```{r, top 1 percent shares vs MTR, echo = FALSE, fig.width = 12, fig.height = 6.75, message = FALSE}
 M1 <- ggplot(data = M_melt, mapping = aes(x = Year, y = Values, colour = Variables, linetype = Variables)) +
   geom_line(show.legend = FALSE) +
-  geom_point(mapping = aes(x = Year, y = Values, shape = Variables), size = 3, na.rm = TRUE, show.legend = FALSE)
+  geom_point(data = subset(M_melt, M_melt$Variables == "P99_100_z"),
+             mapping = aes(x = Year, y = Values), shape = 17, size = 3, show.legend = FALSE)
 M2 <- M1 +
   scale_colour_manual(values = c("black", "red")) +
-  scale_linetype_manual(values = c("solid", "longdash")) +
-  scale_shape_manual(values = c(17, NA))
+  scale_linetype_manual(values = c("solid", "longdash")) 
 M3 <- M2 + 
   theme_bw() + theme_kr +
   scale_x_continuous(name = "연도", breaks = seq(1910, 2020, by = 10), labels = seq(1910, 2020, by = 10)) +
-  scale_y_continuous(name = "상위 소득 점유율(%)", breaks = y1_at, labels = labels1_at, limits = c(0, 1),
+  scale_y_continuous(name = "상위 1% 소득 점유율(%)", breaks = y1_at, labels = labels1_at, limits = c(0, 1),
                      sec.axis = sec_axis(name = "한계 소득세율(%)", trans = ~ z(., q = .), 
                                          breaks = (y4_at + 0.05 )/1.1, labels = labels4_at)) +
   labs(title = "상위 1% 소득점유율과 한계 소득세율") +
-  annotate("text", x = c(1970, 1955), y = c(0.8, 0.35), label = c("최고 한계세율", "상위 1% 소득점유율"), 
+  annotate("text", x = c(1975, 1955), y = c(0.8, 0.35), label = c("한계 소득세율", "상위 1% 소득점유율"), 
            family = "HCR Dotum LVT", size = 6) +
   theme(plot.title = element_text(hjust = 0.5, size = 20))
 M3
@@ -50,19 +50,19 @@ Mi_melt <- M_melt
 Mi_melt[Mi_melt$Variables == "Marginal_z", "Values"] <- 1 - Mi_melt[Mi_melt$Variables == "Marginal_z", "Values"]
 Mi1 <- ggplot(data = Mi_melt, mapping = aes(x = Year, y = Values, colour = Variables, linetype = Variables)) +
   geom_line(show.legend = FALSE) +
-  geom_point(mapping = aes(x = Year, y = Values, shape = Variables), size = 3, na.rm = TRUE, show.legend = FALSE)
+  geom_point(data = subset(Mi_melt, Mi_melt$Variables == "P99_100_z"),
+             mapping = aes(x = Year, y = Values), shape = 17, size = 3, show.legend = FALSE)
 Mi2 <- Mi1 +
   scale_colour_manual(values = c("black", "red")) +
-  scale_linetype_manual(values = c("solid", "longdash")) +
-  scale_shape_manual(values = c(17, NA))
+  scale_linetype_manual(values = c("solid", "longdash")) 
 Mi3 <- Mi2 + 
   theme_bw() + theme_kr +
   scale_x_continuous(name = "연도", breaks = seq(1910, 2020, by = 10), labels = seq(1910, 2020, by = 10)) +
-  scale_y_continuous(name = "상위 소득 점유율(%)", breaks = y1_at, labels = labels1_at, limits = c(0, 1),
+  scale_y_continuous(name = "상위 1% 소득 점유율(%)", breaks = y1_at, labels = labels1_at, limits = c(0, 1),
                      sec.axis = sec_axis(name = "한계 소득세율(%)", trans = ~ z(., q = .), 
                                          breaks = (y4_at + 0.05 )/1.1, labels = rev(labels4_at))) +
   labs(title = "상위 1% 소득점유율과 한계 소득세율") +
-  annotate("text", x = c(1985, 1955), y = c(0.8, 0.35), label = c("최고 한계세율", "상위 1% 소득점유율"), 
+  annotate("text", x = c(1985, 1955), y = c(0.8, 0.35), label = c("한계 소득세율", "상위 1% 소득점유율"), 
            family = "HCR Dotum LVT", size = 6) +
   theme(plot.title = element_text(hjust = 0.5, size = 20))
 Mi3
@@ -74,7 +74,7 @@ Mi3
 R1 <- ggplot(data = Rates_melt, mapping = aes(x = Year, y = Values, colour = Variables, linetype = Variables)) +
   geom_line(show.legend = FALSE) +
   geom_point(data = subset(Rates_melt, Rates_melt$Variables %in% c("Rate_99_z", "Rate_1_z")), 
-             mapping = aes(x = Year, y = Values, shape = Variables), fill = "white", size = 3, na.rm = TRUE, show.legend = TRUE)
+             mapping = aes(x = Year, y = Values, shape = Variables), fill = "white", size = 3, show.legend = TRUE)
 R2 <- R1 +
   scale_colour_manual(values = c("red", "black", "black"), guide = FALSE) +
   scale_linetype_manual(values = c("longdash", "solid", "solid"), guide = FALSE) +
@@ -85,7 +85,7 @@ R3 <- R2 +
   scale_y_continuous(name = "평균 소득 (1913 = 100)", breaks = y2_at, labels = labels2_at, limits = c(0, 1),
                      sec.axis = sec_axis(name = "한계 소득세율(%)", trans = ~ z(., q = .), 
                                          breaks = (y4_at + 0.05 )/1.1, labels = labels4_at)) +
-  labs(title = "상위 1%와 하위 99% 소득 증가\n(자본이득 제외)") +
+  labs(title = "한계 소득세율과 상위 1% 및 하위 99%의 소득 증가\n(자본이득 제외)") +
   annotate("text", x = 1925, y = 0.9, label = "한계 소득세율", 
            family = "HCR Dotum LVT", size = 6) +
   theme(plot.title = element_text(hjust = 0.5, size = 20),
@@ -103,7 +103,7 @@ R3
 RK1 <- ggplot(data = Rates_K_melt, mapping = aes(x = Year, y = Values, colour = Variables, linetype = Variables)) +
   geom_line(show.legend = FALSE) +
   geom_point(data = subset(Rates_K_melt, Rates_K_melt$Variables %in% c("Rate_99_K_z", "Rate_1_K_z")), 
-             mapping = aes(x = Year, y = Values, shape = Variables), fill = "white", size = 3, na.rm = TRUE, show.legend = TRUE)
+             mapping = aes(x = Year, y = Values, shape = Variables), fill = "white", size = 3, show.legend = TRUE)
 RK2 <- RK1 +
   scale_colour_manual(values = c("red", "black", "black"), guide = FALSE) +
   scale_linetype_manual(values = c("longdash", "solid", "solid"), guide = FALSE) +
@@ -114,7 +114,7 @@ RK3 <- RK2 +
   scale_y_continuous(name = "평균 소득 (1913 = 100)", breaks = y3_at, labels = labels3_at, limits = c(0, 1),
                      sec.axis = sec_axis(name = "한계 소득세율(%)", trans = ~ z(., q = .), 
                                          breaks = (y4_at + 0.05 )/1.1, labels = labels4_at)) +
-  labs(title = "상위 1%와 하위 99% 소득 증가\n(자본이득 포함)") +
+  labs(title = "한계 소득세율과 상위 1% 및 하위 99%의 소득 증가\n(자본이득 포함)") +
   annotate("text", x = 1925, y = 0.9, label = "한계 소득세율", 
            family = "HCR Dotum LVT", size = 6) +
   theme(plot.title = element_text(hjust = 0.5, size = 20),
